@@ -1,0 +1,58 @@
+# ========================
+# Python cache
+# ========================
+**pycache**/
+*.py[cod]
+*$py.class
+# ========================
+# Virtual Environment
+# ========================
+venv/
+.venv/
+env/
+# ========================
+# Environment variables
+# ========================
+.env
+.env.*
+!.env.example
+# ========================
+# Django
+# ========================
+*.log
+db.sqlite3
+db.sqlite3-journal
+# Nếu bạn có file config local riêng
+local_settings.py
+# ========================
+# Static & Media
+# ========================
+staticfiles/
+media/
+# ========================
+# Migrations (giữ lại nếu làm team)
+# ========================
+# */migrations/*
+# !*/migrations/**init**.py
+# ========================
+# IDE / Editor
+# ========================
+.vscode/
+.idea/
+# ========================
+# OS files
+# ========================
+.DS_Store
+Thumbs.db
+# ========================
+# Testing & coverage
+# ========================
+.coverage
+htmlcov/
+.pytest_cache/
+# ========================
+# Build / packaging
+# ========================
+build/
+dist/
+*.egg-info/
