@@ -1,0 +1,530 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Diabetes Predictor ML - Prediction Engine</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-fixed-variant": "#733600",
+              "on-tertiary-container": "#fffbff",
+              "secondary-fixed-dim": "#c5c6ca",
+              "primary-fixed-dim": "#abc7ff",
+              "surface-container-low": "#f2f3fc",
+              "on-tertiary-fixed": "#311300",
+              "inverse-primary": "#abc7ff",
+              "on-primary-fixed-variant": "#00458f",
+              "text-muted": "#95AAC9",
+              "on-secondary": "#ffffff",
+              "tertiary-fixed": "#ffdcc7",
+              "secondary-fixed": "#e1e2e6",
+              "surface-bright": "#f9f9ff",
+              "on-secondary-fixed-variant": "#44474a",
+              "on-background": "#191c22",
+              "predict-action": "#28A745",
+              "tertiary-container": "#b85a00",
+              "surface-container": "#ecedf7",
+              "secondary-container": "#dedfe3",
+              "surface-variant": "#e1e2eb",
+              "border-color": "#E3EBF6",
+              "surface-tint": "#005cba",
+              surface: "#f9f9ff",
+              "background-main": "#F8F9FA",
+              danger: "#E5533D",
+              primary: "#005ab6",
+              tertiary: "#934700",
+              outline: "#727784",
+              "on-primary-container": "#fefcff",
+              "on-primary": "#ffffff",
+              "surface-container-highest": "#e1e2eb",
+              "surface-dim": "#d8d9e3",
+              "inverse-on-surface": "#eff0fa",
+              error: "#ba1a1a",
+              "on-secondary-fixed": "#191c1f",
+              background: "#f9f9ff",
+              "inverse-surface": "#2d3037",
+              "on-primary-fixed": "#001b3f",
+              "tertiary-fixed-dim": "#ffb787",
+              "on-secondary-container": "#606366",
+              "error-container": "#ffdad6",
+              success: "#2EB85C",
+              secondary: "#5c5e62",
+              "outline-variant": "#c1c6d5",
+              "surface-container-high": "#e6e8f1",
+              "on-error-container": "#93000a",
+              "primary-fixed": "#d7e3ff",
+              "on-error": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "on-surface": "#191c22",
+              "surface-container-lowest": "#ffffff",
+              "primary-container": "#1d73dc",
+              "text-primary": "#12263F",
+              "on-surface-variant": "#414753",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "container-padding": "24px",
+              "card-padding": "16px",
+              "sidebar-width": "220px",
+              "header-height": "60px",
+              gutter: "16px",
+              "input-padding": "8px",
+            },
+            fontFamily: {
+              "body-md": ["Manrope"],
+              display: ["Manrope"],
+              "body-sm": ["Manrope"],
+              "title-lg": ["Manrope"],
+              "label-bold": ["Manrope"],
+              caption: ["Manrope"],
+            },
+            fontSize: {
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              display: ["24px", { lineHeight: "32px", fontWeight: "700" }],
+              "body-sm": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+              "title-lg": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+              "label-bold": ["14px", { lineHeight: "20px", fontWeight: "600" }],
+              caption: ["12px", { lineHeight: "16px", fontWeight: "500" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+      }
+      body {
+        font-family: "Manrope", sans-serif;
+      }
+    </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+  </head>
+  <body class="bg-background-main text-on-surface">
+    <!-- TopAppBar -->
+    <header
+      class="fixed top-0 w-full h-[60px] border-b bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 shadow-sm shadow-slate-200/50 dark:shadow-none flex justify-between items-center px-6 z-50"
+    >
+      <div class="flex items-center gap-3">
+        <span
+          class="material-symbols-outlined text-blue-600 dark:text-blue-400"
+          data-icon="monitor_heart"
+          >monitor_heart</span
+        >
+        <h1
+          class="text-xl font-bold text-blue-600 dark:text-blue-400 tracking-tighter"
+        >
+          Diabetes Predictor ML
+        </h1>
+      </div>
+      <div class="flex items-center gap-4">
+        <span
+          class="font-manrope text-base font-semibold tracking-tight text-slate-500"
+          >Dr. Sarah Jenkins</span
+        >
+        <div
+          class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center overflow-hidden border border-border-color"
+        >
+          <img
+            alt="Profile"
+            data-alt="A professional close-up portrait of a female medical researcher in a modern laboratory setting. She is wearing a white lab coat and has a friendly, confident expression. The lighting is bright and clinical, emphasizing a clean and trustworthy healthcare environment with soft blue and white background tones."
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_lCtvL8U2t8umhhbkT402RL9T3b6VGaAgOuUFA3CMWXZdTRta_6mWu6SOboF4KWMKpF1MbN4XccljtPnDTKz_6iMu0JIG1efvoSlnhZUuPgZcTHsEhUShwUcQ6ZzEQ3P50WR0OF3q1AAo-K2RAzumlhGZWJkbmnoCOZH_gxBByzcbFzqo-YgiH9RliVrrdnHWpe5NjD-D8AtwbtTXZI0nUg5eUyhP72sjPIfru1JS7sEghlEJ4R5cUdDIqSklU5kcHlYOldUbKS4"
+          />
+        </div>
+      </div>
+    </header>
+    <!-- NavigationDrawer -->
+    <aside
+      class="fixed left-0 top-[60px] w-[220px] h-[calc(100vh-60px)] border-r bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 flex flex-col gap-y-2 p-4"
+    >
+      <div class="mb-4">
+        <p
+          class="font-manrope text-xs font-bold tracking-widest text-text-muted px-3"
+        >
+          ML PIPELINE
+        </p>
+      </div>
+      <nav class="space-y-1">
+        <a
+          class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/50 dark:hover:bg-slate-800 transition-all duration-200 transform active:scale-95 font-manrope text-sm font-medium tracking-wide"
+          href="{% url 'overview' %}"
+        >
+          <span class="material-symbols-outlined" data-icon="database"
+            >database</span
+          >
+          <span>Dataset Overview</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-3 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 font-bold rounded-lg transition-all duration-200 transform active:scale-95 font-manrope text-sm tracking-wide"
+          href="{% url 'predict' %}"
+        >
+          <span class="material-symbols-outlined" data-icon="online_prediction"
+            >online_prediction</span
+          >
+          <span>Predict</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/50 dark:hover:bg-slate-800 transition-all duration-200 transform active:scale-95 font-manrope text-sm font-medium tracking-wide"
+          href="{% url 'model_training' %}"
+        >
+          <span class="material-symbols-outlined" data-icon="model_training"
+            >model_training</span
+          >
+          <span>Model Training</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/50 dark:hover:bg-slate-800 transition-all duration-200 transform active:scale-95 font-manrope text-sm font-medium tracking-wide"
+          href="{% url 'evaluation' %}"
+        >
+          <span class="material-symbols-outlined" data-icon="analytics"
+            >analytics</span
+          >
+          <span>Evaluation</span>
+        </a>
+      </nav>
+    </aside>
+    <!-- Main Content Stage -->
+    <main class="ml-[220px] mt-[60px] p-8 min-h-screen">
+      <div class="max-w-5xl mx-auto space-y-8">
+        <!-- Header Section -->
+        <section class="space-y-2">
+          <h2 class="font-display text-display text-text-primary">
+            Diabetes Risk Prediction
+          </h2>
+          <p
+            class="font-body-md text-body-md text-on-surface-variant max-w-2xl"
+          >
+            Enter the clinical metrics below to generate a real-time prediction
+            using our trained Neural Network. All fields are required for
+            accurate diagnosis.
+          </p>
+        </section>
+        <!-- Bento Layout for Inputs and Results -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Prediction Form Card -->
+          <div
+            class="lg:col-span-2 bg-white rounded-xl p-card-padding shadow-sm border border-border-color"
+          >
+            <div class="flex items-center gap-2 mb-6 text-primary">
+              <span class="material-symbols-outlined" data-icon="health_metrics"
+                >health_metrics</span
+              >
+              <h3 class="font-title-lg text-title-lg">
+                Patient Health Metrics
+              </h3>
+            </div>
+            <form class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+              <div class="space-y-1">
+                <label
+                  class="font-label-bold text-label-bold text-on-surface-variant"
+                  >Pregnancies</label
+                >
+                <input
+                  class="w-full p-input-padding border border-border-color rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                  placeholder="0"
+                  type="number"
+                />
+              </div>
+              <div class="space-y-1">
+                <label
+                  class="font-label-bold text-label-bold text-on-surface-variant"
+                  >Glucose (mg/dL)</label
+                >
+                <input
+                  class="w-full p-input-padding border border-border-color rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                  placeholder="120"
+                  type="number"
+                />
+              </div>
+              <div class="space-y-1">
+                <label
+                  class="font-label-bold text-label-bold text-on-surface-variant"
+                  >Blood Pressure (mm Hg)</label
+                >
+                <input
+                  class="w-full p-input-padding border border-border-color rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                  placeholder="80"
+                  type="number"
+                />
+              </div>
+              <div class="space-y-1">
+                <label
+                  class="font-label-bold text-label-bold text-on-surface-variant"
+                  >Skin Thickness (mm)</label
+                >
+                <input
+                  class="w-full p-input-padding border border-border-color rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                  placeholder="20"
+                  type="number"
+                />
+              </div>
+              <div class="space-y-1">
+                <label
+                  class="font-label-bold text-label-bold text-on-surface-variant"
+                  >Insulin (mu U/ml)</label
+                >
+                <input
+                  class="w-full p-input-padding border border-border-color rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                  placeholder="79"
+                  type="number"
+                />
+              </div>
+              <div class="space-y-1">
+                <label
+                  class="font-label-bold text-label-bold text-on-surface-variant"
+                  >BMI (kg/m²)</label
+                >
+                <input
+                  class="w-full p-input-padding border border-border-color rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                  placeholder="26.6"
+                  step="0.1"
+                  type="number"
+                />
+              </div>
+              <div class="space-y-1">
+                <label
+                  class="font-label-bold text-label-bold text-on-surface-variant"
+                  >Diabetes Pedigree Function</label
+                >
+                <input
+                  class="w-full p-input-padding border border-border-color rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                  placeholder="0.351"
+                  step="0.001"
+                  type="number"
+                />
+              </div>
+              <div class="space-y-1">
+                <label
+                  class="font-label-bold text-label-bold text-on-surface-variant"
+                  >Age (years)</label
+                >
+                <input
+                  class="w-full p-input-padding border border-border-color rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                  placeholder="33"
+                  type="number"
+                />
+              </div>
+              <div class="md:col-span-2 pt-4">
+                <button
+                  class="w-full py-4 bg-predict-action hover:bg-[#218838] text-white font-display text-title-lg rounded-xl flex items-center justify-center gap-3 transition-colors duration-200 shadow-lg shadow-predict-action/20"
+                  type="submit"
+                >
+                  <span class="material-symbols-outlined" data-icon="bolt"
+                    >bolt</span
+                  >
+                  Predict
+                </button>
+              </div>
+            </form>
+          </div>
+          <!-- Result Sidebar (Right Panel) -->
+          <div class="space-y-6">
+            <!-- Positive Result Card (Sample) -->
+            <div
+              class="bg-white rounded-xl p-card-padding shadow-sm border-l-4 border-l-danger border border-border-color"
+            >
+              <div class="flex justify-between items-start mb-4">
+                <h4
+                  class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-widest"
+                >
+                  Outcome Prediction
+                </h4>
+                <span
+                  class="material-symbols-outlined text-danger"
+                  data-icon="warning"
+                  >warning</span
+                >
+              </div>
+              <div class="mb-4">
+                <span
+                  class="font-display text-[32px] text-danger font-extrabold"
+                  >Positive</span
+                >
+                <div class="flex items-center gap-2 mt-1">
+                  <div
+                    class="h-2 flex-grow bg-surface-container rounded-full overflow-hidden"
+                  >
+                    <div class="h-full bg-danger w-[84%]"></div>
+                  </div>
+                  <span class="font-caption text-caption text-danger font-bold"
+                    >84%</span
+                  >
+                </div>
+              </div>
+              <p
+                class="font-body-sm text-body-sm text-on-surface-variant italic"
+              >
+                High probability of diabetes indicated. Immediate clinical
+                consultation is recommended.
+              </p>
+            </div>
+            <!-- Negative Result Card (Sample Hidden/Inactive) -->
+            <div
+              class="bg-white rounded-xl p-card-padding shadow-sm border border-border-color opacity-60"
+            >
+              <div class="flex justify-between items-start mb-4">
+                <h4
+                  class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-widest"
+                >
+                  Normal Range Reference
+                </h4>
+                <span
+                  class="material-symbols-outlined text-success"
+                  data-icon="check_circle"
+                  >check_circle</span
+                >
+              </div>
+              <div class="mb-4">
+                <span class="font-display text-display text-success"
+                  >Negative</span
+                >
+                <div class="flex items-center gap-2 mt-1">
+                  <div
+                    class="h-2 flex-grow bg-surface-container rounded-full overflow-hidden"
+                  >
+                    <div class="h-full bg-success w-[12%]"></div>
+                  </div>
+                  <span class="font-caption text-caption text-success font-bold"
+                    >12%</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Informational Tip Card -->
+            <div
+              class="bg-blue-50 rounded-xl p-card-padding border border-blue-100"
+            >
+              <div class="flex items-center gap-2 mb-2 text-blue-700">
+                <span
+                  class="material-symbols-outlined text-sm"
+                  data-icon="lightbulb"
+                  >lightbulb</span
+                >
+                <span class="font-label-bold text-label-bold"
+                  >Model Confidence</span
+                >
+              </div>
+              <p class="font-body-sm text-body-sm text-blue-700/80">
+                The current model is trained on the Pima Indians Diabetes
+                Dataset with a validated accuracy of 89.2%.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Visualization Section -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div
+            class="bg-white rounded-xl p-card-padding border border-border-color"
+          >
+            <h3
+              class="font-label-bold text-label-bold mb-4 flex items-center gap-2"
+            >
+              <span
+                class="material-symbols-outlined text-primary"
+                data-icon="monitoring"
+                >monitoring</span
+              >
+              Feature Importance
+            </h3>
+            <div class="space-y-3">
+              <div class="space-y-1">
+                <div
+                  class="flex justify-between text-caption uppercase text-text-muted"
+                >
+                  <span>Glucose</span>
+                  <span>42%</span>
+                </div>
+                <div class="h-1.5 w-full bg-slate-100 rounded-full">
+                  <div class="h-full bg-primary w-[42%] rounded-full"></div>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div
+                  class="flex justify-between text-caption uppercase text-text-muted"
+                >
+                  <span>BMI</span>
+                  <span>28%</span>
+                </div>
+                <div class="h-1.5 w-full bg-slate-100 rounded-full">
+                  <div class="h-full bg-primary w-[28%] rounded-full"></div>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div
+                  class="flex justify-between text-caption uppercase text-text-muted"
+                >
+                  <span>Age</span>
+                  <span>15%</span>
+                </div>
+                <div class="h-1.5 w-full bg-slate-100 rounded-full">
+                  <div class="h-full bg-primary w-[15%] rounded-full"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="relative rounded-xl overflow-hidden min-h-[160px] border border-border-color flex items-center justify-center"
+          >
+            <img
+              alt="Data flow visualization"
+              class="absolute inset-0 w-full h-full object-cover"
+              data-alt="A sophisticated abstract digital visualization showing data points connecting and flowing through a neural network lattice. The aesthetic is clean and corporate with a light background and glowing primary blue lines. Soft bokeh effects and thin vector lines create a sense of high-speed processing and medical precision."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0l0_WSA336imFF-5CKjPwU2f_8LQ0zKGqOVEy_7ZBVm8JW16RJ9MFkNwFdGsV6EzPJd8xkAX5p8T1wI5NV5FXllTXh69BVi48NaMtGU-BNgQkshisz_t3ebgEf_uxT2S_fakufLGV76pIsI_wm3wzNGxtanYmPrmbquVO2qyZ7d2-najc63GJB7Mn4A8AbTbOFCwNhCeMSZcmbPFCvZYtoVc7EPL3KJ3vbjUlSRvuK7BRbErzTgA4ZCSHyFdVseOIMDIY1T7etaM"
+            />
+            <div
+              class="relative z-10 text-center p-6 bg-white/90 backdrop-blur-sm rounded-lg border border-white/50"
+            >
+              <span
+                class="material-symbols-outlined text-3xl text-primary mb-2"
+                data-icon="query_stats"
+                >query_stats</span
+              >
+              <p class="font-label-bold text-label-bold">
+                Processing Real-time Metrics
+              </p>
+              <p class="text-caption text-text-muted">Edge Computing Active</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
