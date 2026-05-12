@@ -5,22 +5,22 @@
 - Viết class InputData để xây dựng form nhập liệu
 - Dùng nó để load dữ liệu nhập từ form trong predict.html
 
-## Task 1: Xây dựng module data_processor:
+## Task 1: Xây dựng module data_processor:(hải)
 
 - Hoàn thiện các hàm của module viết trong TaskFlow.md
 - Xuất chúng ra giao diện overview.html
 
-## Task 2: Xây dựng module evaluator:
+## Task 2: Xây dựng module evaluator: (hải)
 
 - Xây dựng file evaluator.py tương ứng theo TaskFlow.md
 - Hiển thị trong giao diện evaluation.html
 
-## Task 3: Triển khai LogisticRegression:
+## Task 3: Triển khai LogisticRegression:(hải)
 
 - Cấu trúc đọc trong TaskFlow.md
 - Quản lý cập nhật weight/bias
 
-## Task 4: Triển khai KNN:
+## Task 4: Triển khai KNN: (hải)
 
 - Viết hàm tính khoảng cách euclidean
 - Viết logic KNN và voting
