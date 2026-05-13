@@ -177,7 +177,8 @@
 <div class="flex justify-between items-end">
 <div>
 <h1 class="font-display text-display text-text-primary mb-1">Dataset Overview</h1>
-<p class="font-body-sm text-body-sm text-text-muted">Analyzing Pima Indians Diabetes Database (768 records found)</p>
+<!-- <p class="font-body-sm text-body-sm text-text-muted">Analyzing Pima Indians Diabetes Database (768 records found)</p> -->
+<p class="font-body-sm text-body-sm text-text-muted">Analyzing Pima Indians Diabetes Database ({{ total_records }} records found)</p>
 </div>
 <div class="flex gap-3">
 <button class="px-4 py-2 bg-white border border-border-color rounded-lg text-body-sm font-label-bold text-slate-700 flex items-center gap-2 hover:bg-slate-50 transition-colors">
@@ -200,7 +201,8 @@
 <span class="px-2 py-0.5 bg-blue-100 text-blue-700 text-[11px] font-bold rounded uppercase tracking-wider">Normalized Data</span>
 </div>
 <div class="flex items-center gap-2">
-<span class="text-[12px] text-text-muted">Showing 10 of 768 entries</span>
+<!-- <span class="text-[12px] text-text-muted">Showing 10 of 768 entries</span> -->
+ <span class="text-[12px] text-text-muted">Showing 10 of {{ total_records }} entries</span>
 </div>
 </div>
 <div class="flex-1 overflow-auto custom-scrollbar">
@@ -219,7 +221,7 @@
 <th class="px-6 py-3 border-b border-border-color font-label-bold text-caption text-text-muted uppercase tracking-wider">Outcome</th>
 </tr>
 </thead>
-<tbody class="divide-y divide-border-color">
+<!-- <tbody class="divide-y divide-border-color">
 <tr class="hover:bg-blue-50/30 transition-colors">
 <td class="px-6 py-4 font-body-sm text-body-sm text-text-muted">#001</td>
 <td class="px-6 py-4 font-body-sm text-body-sm">6</td>
@@ -292,10 +294,139 @@
 <td class="px-6 py-4 font-body-sm text-body-sm">30</td>
 <td class="px-6 py-4"><span class="px-2.5 py-1 bg-success/10 text-success text-[11px] font-bold rounded-full">NEGATIVE</span></td>
 </tr>
+</tbody> -->
+<tbody class="divide-y divide-border-color">
+    {% for row in preview_data %}
+    <tr class="hover:bg-blue-50/30 transition-colors">
+        <td class="px-6 py-4 font-body-sm text-body-sm text-text-muted">
+            #{{ forloop.counter }}
+        </td>
+        <td class="px-6 py-4 font-body-sm text-body-sm">
+            {{ row.Pregnancies }}
+        </td>
+        <td class="px-6 py-4 font-body-sm text-body-sm font-semibold">
+            {{ row.Glucose }}
+        </td>
+        <td class="px-6 py-4 font-body-sm text-body-sm">
+            {{ row.BloodPressure }}
+        </td>
+        <td class="px-6 py-4 font-body-sm text-body-sm">
+            {{ row.SkinThickness }}
+        </td>
+        <td class="px-6 py-4 font-body-sm text-body-sm">
+            {{ row.Insulin }}
+        </td>
+        <td class="px-6 py-4 font-body-sm text-body-sm">
+            {{ row.BMI }}
+        </td>
+        <td class="px-6 py-4 font-body-sm text-body-sm">
+            {{ row.DiabetesPedigreeFunction }}
+        </td>
+        <td class="px-6 py-4 font-body-sm text-body-sm">
+            {{ row.Age }}
+        </td>
+        <td class="px-6 py-4">
+        {% if row.Outcome == 1 %}
+        <span class="px-2.5 py-1 bg-red-100 text-red-700 text-[11px] font-bold rounded-full">
+            POSITIVE
+        </span>
+        {% else %}
+        <span class="px-2.5 py-1 bg-success/10 text-success text-[11px] font-bold rounded-full">
+            NEGATIVE
+        </span>
+        {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
 </tbody>
 </table>
 </div>
 </div>
+
+<!-- bảng Statistics -->
+<div class="col-span-12 bg-white rounded-[10px] border border-border-color shadow-sm overflow-hidden p-6">
+
+
+<h2 class="text-lg font-bold mb-4">
+    Field Statistics
+</h2>
+
+<div class="overflow-auto">
+
+<table class="w-full border-collapse">
+
+<thead>
+
+<tr class="border-b border-border-color">
+
+<th class="text-left py-3">Field</th>
+<th class="text-left py-3">Mean</th>
+<th class="text-left py-3">Std</th>
+<th class="text-left py-3">Missing %</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for item in statistics %}
+
+<tr class="border-b border-border-color">
+
+<td class="py-3">
+    {{ item.field }}
+</td>
+
+<td class="py-3">
+    {{ item.mean }}
+</td>
+
+<td class="py-3">
+    {{ item.std }}
+</td>
+
+<td class="py-3">
+    {{ item.missing_percent }}%
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- outcome Balance -->
+<div class="col-span-12 bg-white rounded-[10px] border border-border-color shadow-sm overflow-hidden p-6">
+
+<h2 class="text-lg font-bold mb-4">
+    Outcome Balance
+</h2>
+
+<div class="space-y-2">
+
+<p>
+    Positive:
+    {{ outcome_balance.positive }}
+    ({{ outcome_balance.positive_percent }}%)
+</p>
+
+<p>
+    Negative:
+    {{ outcome_balance.negative }}
+    ({{ outcome_balance.negative_percent }}%)
+</p>
+
+</div>
+
+</div>
+
 <!-- Statistics Panel -->
 <div class="col-span-12 bg-white rounded-[10px] border border-border-color shadow-sm overflow-hidden p-6">
 <div class="flex items-center gap-2 mb-6">
@@ -458,8 +589,8 @@
 <div class="h-full bg-success/60" style="width: 65.1%"></div>
 </div>
 <div class="flex justify-between w-full text-caption">
-<span class="text-red-600 font-bold">34.9% Positive</span>
-<span class="text-success font-bold">65.1% Negative</span>
+<span class="text-red-600 font-bold">{{ outcome_balance.positive_percent }}% Positive</span>
+<span class="text-success font-bold">{{ outcome_balance.negative_percent }}% Negative</span>
 </div>
 </div>
 <div class="col-span-12 lg:col-span-8 bg-blue-600 rounded-[10px] shadow-sm p-6 flex items-center justify-between overflow-hidden relative group">

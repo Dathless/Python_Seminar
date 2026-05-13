@@ -149,40 +149,40 @@
 <main class="ml-[220px] pt-[60px] min-h-screen p-8">
 <div class="max-w-6xl mx-auto space-y-8">
 <!-- Header Section -->
-<div class="flex flex-col gap-1">
+<!-- <div class="flex flex-col gap-1">
 <h2 class="font-display text-display text-text-primary">Model Evaluation</h2>
 <p class="text-body-md text-on-surface-variant">Comprehensive performance analysis of the Diabetes Prediction Random Forest Model.</p>
-</div>
+</div> -->
 <!-- Bento Grid Metrics -->
-<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<!-- <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter"> -->
 <!-- Accuracy Train -->
-<div class="bg-white rounded-xl p-card-padding shadow-sm border border-border-color flex flex-col justify-between">
+<!-- <div class="bg-white rounded-xl p-card-padding shadow-sm border border-border-color flex flex-col justify-between">
 <div class="flex justify-between items-start">
 <span class="text-caption text-text-muted font-bold uppercase tracking-wider">Train Accuracy</span>
 <span class="material-symbols-outlined text-primary" data-icon="checklist">checklist</span>
 </div>
 <div class="mt-4">
-<span class="text-display font-extrabold text-primary">94.2%</span>
+<span class="text-display font-extrabold text-primary">{{ metrics.accuracy }}%<span>
 <div class="w-full bg-surface-container-low h-1.5 rounded-full mt-2">
 <div class="bg-primary h-full rounded-full" style="width: 94.2%"></div>
 </div>
 </div>
-</div>
+</div> -->
 <!-- Accuracy Test -->
-<div class="bg-white rounded-xl p-card-padding shadow-sm border border-border-color flex flex-col justify-between">
+<!-- <div class="bg-white rounded-xl p-card-padding shadow-sm border border-border-color flex flex-col justify-between">
 <div class="flex justify-between items-start">
 <span class="text-caption text-text-muted font-bold uppercase tracking-wider">Test Accuracy</span>
 <span class="material-symbols-outlined text-success" data-icon="verified">verified</span>
 </div>
 <div class="mt-4">
-<span class="text-display font-extrabold text-success">91.8%</span>
+<span class="text-display font-extrabold text-success">{{ metrics.precision }}%</span>
 <div class="w-full bg-surface-container-low h-1.5 rounded-full mt-2">
 <div class="bg-success h-full rounded-full" style="width: 91.8%"></div>
 </div>
 </div>
-</div>
+</div> -->
 <!-- Precision/Recall -->
-<div class="bg-white rounded-xl p-card-padding shadow-sm border border-border-color md:col-span-2 flex items-center justify-around">
+<!-- <div class="bg-white rounded-xl p-card-padding shadow-sm border border-border-color md:col-span-2 flex items-center justify-around">
 <div class="text-center">
 <p class="text-caption text-text-muted font-bold uppercase mb-1">Precision</p>
 <p class="text-display font-extrabold text-text-primary">0.89</p>
@@ -197,15 +197,109 @@
 <p class="text-xs text-success flex items-center justify-center gap-1">
 <span class="material-symbols-outlined text-xs" data-icon="trending_up">trending_up</span> +0.4%
                         </p>
-</div>
-<div class="h-12 w-px bg-border-color"></div>
+</div> -->
+<!-- <div class="h-12 w-px bg-border-color"></div>
 <div class="text-center">
 <p class="text-caption text-text-muted font-bold uppercase mb-1">F1-Score</p>
 <p class="text-display font-extrabold text-text-primary">0.88</p>
 <p class="text-xs text-text-muted">Stable</p>
 </div>
 </div>
+</div> -->
+
+<!-- details section -->
+<div class="bg-white rounded-[10px] border border-border-color shadow-sm p-6 mt-6">
+
+<h2 class="text-2xl font-bold mb-6">
+    Model Evaluation
+</h2>
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+<div class="border rounded-lg p-4">
+    <p class="text-sm text-gray-500">Accuracy</p>
+    <h3 class="text-2xl font-bold">
+        {{ metrics.accuracy }}%
+    </h3>
 </div>
+
+<div class="border rounded-lg p-4">
+    <p class="text-sm text-gray-500">Precision</p>
+    <h3 class="text-2xl font-bold">
+        {{ metrics.precision }}%
+    </h3>
+</div>
+
+<div class="border rounded-lg p-4">
+    <p class="text-sm text-gray-500">Recall</p>
+    <h3 class="text-2xl font-bold">
+        {{ metrics.recall }}%
+    </h3>
+</div>
+
+<div class="border rounded-lg p-4">
+    <p class="text-sm text-gray-500">F1 Score</p>
+    <h3 class="text-2xl font-bold">
+        {{ metrics.f1_score }}%
+    </h3>
+</div>
+
+</div>
+
+<div class="mt-8">
+
+<!-- <h3 class="text-xl font-bold mb-4">
+    Confusion Matrix
+</h3> -->
+
+<div class="grid grid-cols-2 gap-4">
+
+<!-- <div class="bg-green-100 p-4 rounded-lg">
+    <p class="font-semibold">
+        True Positive
+    </p>
+
+    <h4 class="text-2xl font-bold">
+        {{ metrics.true_positive }}
+    </h4>
+</div> -->
+
+<!-- <div class="bg-red-100 p-4 rounded-lg">
+    <p class="font-semibold">
+        False Positive
+    </p>
+
+    <h4 class="text-2xl font-bold">
+        {{ metrics.false_positive }}
+    </h4>
+</div> -->
+
+<!-- <div class="bg-yellow-100 p-4 rounded-lg">
+    <p class="font-semibold">
+        False Negative
+    </p>
+
+    <h4 class="text-2xl font-bold">
+        {{ metrics.false_negative }}
+    </h4>
+</div> -->
+
+<!-- <div class="bg-blue-100 p-4 rounded-lg">
+    <p class="font-semibold">
+        True Negative
+    </p>
+
+    <h4 class="text-2xl font-bold">
+        {{ metrics.true_negative }}
+    </h4>
+</div> -->
+
+</div>
+
+</div>
+
+</div>
+
 <!-- Detailed Analysis Section -->
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
 <!-- Confusion Matrix -->
@@ -215,7 +309,7 @@
 <span class="material-symbols-outlined text-primary" data-icon="grid_view">grid_view</span>
                             Confusion Matrix
                         </h3>
-<span class="text-caption text-text-muted">Test Set (n=2,000)</span>
+<span class="text-caption text-text-muted">Test Set (n={{ total_records }})</span>
 </div>
 <div class="relative overflow-x-auto">
 <table class="w-full text-center">
@@ -231,13 +325,13 @@
 <td class="p-4 text-left font-bold text-caption text-text-muted uppercase vertical-lr border-r border-border-color">Actual: Negative</td>
 <td class="p-8 bg-blue-50/30">
 <div class="flex flex-col items-center">
-<span class="text-display text-primary font-extrabold">1,245</span>
+<span class="text-display text-primary font-extrabold">{{ metrics.true_negative }}</span>
 <span class="text-xs font-semibold text-primary/70 uppercase">True Negative</span>
 </div>
 </td>
 <td class="p-8 bg-error/5">
 <div class="flex flex-col items-center">
-<span class="text-display text-error font-extrabold">152</span>
+<span class="text-display text-error font-extrabold">{{ metrics.false_positive }}</span>
 <span class="text-xs font-semibold text-error/70 uppercase">False Positive</span>
 </div>
 </td>
@@ -246,13 +340,13 @@
 <td class="p-4 text-left font-bold text-caption text-text-muted uppercase border-r border-border-color">Actual: Positive</td>
 <td class="p-8 bg-error/5">
 <div class="flex flex-col items-center">
-<span class="text-display text-error font-extrabold">124</span>
+<span class="text-display text-error font-extrabold">{{ metrics.false_negative }}</span>
 <span class="text-xs font-semibold text-error/70 uppercase">False Negative</span>
 </div>
 </td>
 <td class="p-8 bg-success/10">
 <div class="flex flex-col items-center">
-<span class="text-display text-success font-extrabold">479</span>
+<span class="text-display text-success font-extrabold">{{ metrics.true_positive }}</span>
 <span class="text-xs font-semibold text-success/70 uppercase">True Positive</span>
 </div>
 </td>
@@ -272,20 +366,20 @@
 <div>
 <div class="flex justify-between items-center mb-2">
 <span class="font-bold text-body-sm text-text-primary">Non-Diabetic (Class 0)</span>
-<span class="text-caption bg-surface-container-low px-2 py-0.5 rounded text-text-muted">Supp: 1,397</span>
+<span class="text-caption bg-surface-container-low px-2 py-0.5 rounded text-text-muted">Supp: {{ metrics.report.0.support }}</span>
 </div>
 <div class="grid grid-cols-3 gap-2">
 <div class="bg-surface-bright p-2 rounded text-center">
 <span class="block text-[10px] text-text-muted font-bold uppercase">Prec.</span>
-<span class="text-label-bold">0.91</span>
+<span class="text-label-bold">{{ metrics.report.0.precision }}</span>
 </div>
 <div class="bg-surface-bright p-2 rounded text-center">
 <span class="block text-[10px] text-text-muted font-bold uppercase">Rec.</span>
-<span class="text-label-bold">0.89</span>
+<span class="text-label-bold">{{ metrics.report.0.recall }}</span>
 </div>
 <div class="bg-surface-bright p-2 rounded text-center">
 <span class="block text-[10px] text-text-muted font-bold uppercase">F1</span>
-<span class="text-label-bold">0.90</span>
+<span class="text-label-bold">{{ metrics.report.0.f1score }}</span>
 </div>
 </div>
 </div>
@@ -293,20 +387,20 @@
 <div>
 <div class="flex justify-between items-center mb-2">
 <span class="font-bold text-body-sm text-text-primary">Diabetic (Class 1)</span>
-<span class="text-caption bg-surface-container-low px-2 py-0.5 rounded text-text-muted">Supp: 603</span>
+<span class="text-caption bg-surface-container-low px-2 py-0.5 rounded text-text-muted">Supp: {{ metrics.report.1.support }}</span>
 </div>
 <div class="grid grid-cols-3 gap-2">
 <div class="bg-surface-bright p-2 rounded text-center border-l-2 border-primary">
 <span class="block text-[10px] text-text-muted font-bold uppercase">Prec.</span>
-<span class="text-label-bold">0.76</span>
+<span class="text-label-bold">{{ metrics.report.1.precision }}</span>
 </div>
 <div class="bg-surface-bright p-2 rounded text-center border-l-2 border-primary">
 <span class="block text-[10px] text-text-muted font-bold uppercase">Rec.</span>
-<span class="text-label-bold">0.79</span>
+<span class="text-label-bold">{{ metrics.report.1.recall }}</span>
 </div>
 <div class="bg-surface-bright p-2 rounded text-center border-l-2 border-primary">
 <span class="block text-[10px] text-text-muted font-bold uppercase">F1</span>
-<span class="text-label-bold">0.78</span>
+<span class="text-label-bold">{{ metrics.report.1.f1score }}</span>
 </div>
 </div>
 </div>
@@ -318,11 +412,11 @@
 <div class="w-full space-y-2">
 <div class="flex justify-between text-body-sm">
 <span class="text-on-surface-variant">Macro Avg</span>
-<span class="font-bold">0.84</span>
+<span class="font-bold">{{ metrics.report.macro_avg.f1score }}</span>
 </div>
 <div class="flex justify-between text-body-sm">
 <span class="text-on-surface-variant">Weighted Avg</span>
-<span class="font-bold">0.88</span>
+<span class="font-bold">{{ metrics.report.weighted_avg.f1score }}</span>
 </div>
 </div>
 </div>
@@ -337,37 +431,37 @@
 <div>
 <div class="flex justify-between text-caption mb-1">
 <span class="font-bold uppercase">Glucose Level</span>
-<span class="text-primary font-bold">0.38</span>
+<span class="text-primary font-bold">{{ feature_importance.0.score }}</span>
 </div>
 <div class="w-full bg-surface-container-low h-2 rounded-full">
-<div class="bg-primary h-full rounded-full" style="width: 78%"></div>
+<div class="bg-primary h-full rounded-full" style="width: {% widthratio feature_importance.0.score 1 100 %}%"></div>
 </div>
 </div>
 <div>
 <div class="flex justify-between text-caption mb-1">
 <span class="font-bold uppercase">BMI</span>
-<span class="text-primary font-bold">0.22</span>
+<span class="text-primary font-bold">{{ feature_importance.1.score }}</span>
 </div>
 <div class="w-full bg-surface-container-low h-2 rounded-full">
-<div class="bg-primary h-full rounded-full" style="width: 55%"></div>
+<div class="bg-primary h-full rounded-full" style="width: {% widthratio feature_importance.1.score 1 100 %}%"></div>
 </div>
 </div>
 <div>
 <div class="flex justify-between text-caption mb-1">
 <span class="font-bold uppercase">Age</span>
-<span class="text-primary font-bold">0.14</span>
+<span class="text-primary font-bold">{{ feature_importance.2.score }}</span>
 </div>
 <div class="w-full bg-surface-container-low h-2 rounded-full">
-<div class="bg-primary h-full rounded-full" style="width: 35%"></div>
+<div class="bg-primary h-full rounded-full" style="width: {% widthratio feature_importance.2.score 1 100 %}%"></div>
 </div>
 </div>
 <div>
 <div class="flex justify-between text-caption mb-1">
 <span class="font-bold uppercase">HbA1c Level</span>
-<span class="text-primary font-bold">0.12</span>
+<span class="text-primary font-bold">{{ feature_importance.3.score }}</span>
 </div>
 <div class="w-full bg-surface-container-low h-2 rounded-full">
-<div class="bg-primary h-full rounded-full" style="width: 28%"></div>
+<div class="bg-primary h-full rounded-full" style="width: {% widthratio feature_importance.3.score 1 100 %}%"></div>
 </div>
 </div>
 </div>

@@ -16,12 +16,12 @@ diabetes_project/
 │
 ├── core/                   # Lõi xử lý logic Machine Learning (Manual)
 │   ├── __init__.py         # Đánh dấu thư mục là Python Package
-│   ├── data_processor.py   # Load dữ liệu, tính thống kê và Z-score
-│   ├── knn.py              # Thuật toán K-Nearest Neighbors manual
+│   ├── data_processor.py   # Load dữ liệu, tính thống kê và Z-score (rồi)
+│   ├── knn.py              # Thuật toán K-Nearest Neighbors manual (rồi)
 │   ├── decision_tree.py    # Thuật toán Decision Tree manual
-│   ├── logistics_reg.py    # Thuật toán Logistic Regression manual
+│   ├── logistics_reg.py    # Thuật toán Logistic Regression manual (rồi)
 │   ├── trainer.py          # Logic huấn luyện (Epoch, Batch, Loss history)
-│   └── evaluator.py        # Tính toán ma trận nhầm lẫn và Metrics
+│   └── evaluator.py        # Tính toán ma trận nhầm lẫn và Metrics (rồi)
 │
 ├── diabetes/               # [startapp] Django App (Giao diện & API)
 │   ├── migrations/         
