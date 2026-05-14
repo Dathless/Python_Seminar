@@ -371,7 +371,9 @@
           </div>
           <!-- Result Sidebar (Right Panel) -->
           <div class="space-y-6">
-            <!-- Positive Result Card (Sample) -->
+            {% if has_prediction %}
+            <!-- Positive Result Card -->
+            {% if prediction == 1 %}
             <div
               class="bg-white rounded-xl p-card-padding shadow-sm border-l-4 border-l-danger border border-border-color"
             >
@@ -396,10 +398,13 @@
                   <div
                     class="h-2 flex-grow bg-surface-container rounded-full overflow-hidden"
                   >
-                    <div class="h-full bg-danger w-[84%]"></div>
+                    <div
+                      class="h-full bg-danger"
+                      style="width: {{ accuracy }}%"
+                    ></div>
                   </div>
                   <span class="font-caption text-caption text-danger font-bold"
-                    >84%</span
+                    >{{ accuracy }}%</span
                   >
                 </div>
               </div>
@@ -410,7 +415,7 @@
                 consultation is recommended.
               </p>
             </div>
-            <!-- Negative Result Card (Sample Hidden/Inactive) -->
+            <!-- Negative Result Card (Inactive) -->
             <div
               class="bg-white rounded-xl p-card-padding shadow-sm border border-border-color opacity-60"
             >
@@ -434,10 +439,184 @@
                   <div
                     class="h-2 flex-grow bg-surface-container rounded-full overflow-hidden"
                   >
-                    <div class="h-full bg-success w-[12%]"></div>
+                    <div
+                      class="h-full bg-success"
+                      style="width: {{ complement_accuracy }}%"
+                    ></div>
                   </div>
                   <span class="font-caption text-caption text-success font-bold"
-                    >12%</span
+                    >{{ complement_accuracy|floatformat:0 }}%</span
+                  >
+                </div>
+              </div>
+            </div>
+            {% else %}
+            <!-- Negative Result Card (Primary) -->
+            <div
+              class="bg-white rounded-xl p-card-padding shadow-sm border-l-4 border-l-success border border-border-color"
+            >
+              <div class="flex justify-between items-start mb-4">
+                <h4
+                  class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-widest"
+                >
+                  Outcome Prediction
+                </h4>
+                <span
+                  class="material-symbols-outlined text-success"
+                  data-icon="check_circle"
+                  >check_circle</span
+                >
+              </div>
+              <div class="mb-4">
+                <span
+                  class="font-display text-[32px] text-success font-extrabold"
+                  >Negative</span
+                >
+                <div class="flex items-center gap-2 mt-1">
+                  <div
+                    class="h-2 flex-grow bg-surface-container rounded-full overflow-hidden"
+                  >
+                    <div
+                      class="h-full bg-success"
+                      style="width: {{ accuracy }}%"
+                    ></div>
+                  </div>
+                  <span class="font-caption text-caption text-success font-bold"
+                    >{{ accuracy }}%</span
+                  >
+                </div>
+              </div>
+              <p
+                class="font-body-sm text-body-sm text-on-surface-variant italic"
+              >
+                Low probability of diabetes. Continue with regular health
+                checkups.
+              </p>
+            </div>
+            <!-- Positive Result Card (Inactive) -->
+            <div
+              class="bg-white rounded-xl p-card-padding shadow-sm border border-border-color opacity-60"
+            >
+              <div class="flex justify-between items-start mb-4">
+                <h4
+                  class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-widest"
+                >
+                  High Risk Alert
+                </h4>
+                <span
+                  class="material-symbols-outlined text-danger"
+                  data-icon="warning"
+                  >warning</span
+                >
+              </div>
+              <div class="mb-4">
+                <span class="font-display text-display text-danger"
+                  >Positive</span
+                >
+                <div class="flex items-center gap-2 mt-1">
+                  <div
+                    class="h-2 flex-grow bg-surface-container rounded-full overflow-hidden"
+                  >
+                    <div
+                      class="h-full bg-danger"
+                      style="width: {{ complement_accuracy }}%"
+                    ></div>
+                  </div>
+                  <span class="font-caption text-caption text-danger font-bold"
+                    >{{ complement_accuracy|floatformat:0 }}%</span
+                  >
+                </div>
+              </div>
+            </div>
+            {% endif %}
+            <!-- Informational Tip Card -->
+            <div
+              class="bg-blue-50 rounded-xl p-card-padding border border-blue-100"
+            >
+              <div class="flex items-center gap-2 mb-2 text-blue-700">
+                <span
+                  class="material-symbols-outlined text-sm"
+                  data-icon="lightbulb"
+                  >lightbulb</span
+                >
+                <span class="font-label-bold text-label-bold"
+                  >Model Confidence</span
+                >
+              </div>
+              <p class="font-body-sm text-body-sm text-blue-700/80">
+                The <strong>{{ best_model }}</strong> model achieved an accuracy
+                of <strong>{{ accuracy }}%</strong> on the test dataset and is
+                currently providing this prediction.
+              </p>
+            </div>
+            {% else %}
+            <!-- Default Cards (No Prediction Yet) -->
+            <div
+              class="bg-white rounded-xl p-card-padding shadow-sm border-l-4 border-l-slate-300 border border-border-color"
+            >
+              <div class="flex justify-between items-start mb-4">
+                <h4
+                  class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-widest"
+                >
+                  Outcome Prediction
+                </h4>
+                <span
+                  class="material-symbols-outlined text-slate-400"
+                  data-icon="pending"
+                  >pending</span
+                >
+              </div>
+              <div class="mb-4">
+                <span
+                  class="font-display text-[32px] text-slate-400 font-extrabold"
+                  >Pending</span
+                >
+                <div class="flex items-center gap-2 mt-1">
+                  <div
+                    class="h-2 flex-grow bg-surface-container rounded-full overflow-hidden"
+                  >
+                    <div class="h-full bg-slate-300 w-0"></div>
+                  </div>
+                  <span
+                    class="font-caption text-caption text-slate-400 font-bold"
+                    >--%</span
+                  >
+                </div>
+              </div>
+              <p
+                class="font-body-sm text-body-sm text-on-surface-variant italic"
+              >
+                Fill in the form and click Predict to get your diagnosis.
+              </p>
+            </div>
+            <!-- Normal Range Reference Card -->
+            <div
+              class="bg-white rounded-xl p-card-padding shadow-sm border border-border-color opacity-60"
+            >
+              <div class="flex justify-between items-start mb-4">
+                <h4
+                  class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-widest"
+                >
+                  Normal Range Reference
+                </h4>
+                <span
+                  class="material-symbols-outlined text-success"
+                  data-icon="check_circle"
+                  >check_circle</span
+                >
+              </div>
+              <div class="mb-4">
+                <span class="font-display text-display text-success"
+                  >Negative</span
+                >
+                <div class="flex items-center gap-2 mt-1">
+                  <div
+                    class="h-2 flex-grow bg-surface-container rounded-full overflow-hidden"
+                  >
+                    <div class="h-full bg-success w-[0%]"></div>
+                  </div>
+                  <span class="font-caption text-caption text-success font-bold"
+                    >--%</span
                   >
                 </div>
               </div>
@@ -461,6 +640,7 @@
                 Dataset with a validated accuracy of 89.2%.
               </p>
             </div>
+            {% endif %}
           </div>
         </div>
         <!-- Visualization Section -->

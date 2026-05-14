@@ -67,6 +67,9 @@ def index(request):
     )
 
 def predict(request):
+    context = {}
+    form = DataInput()
+    
     if request.method == 'POST':
         form = DataInput(request.POST)
         
@@ -77,17 +80,12 @@ def predict(request):
             
             try:
                 # 1. Load dữ liệu (Đảm bảo đúng đường dẫn file)
-                data = pd.read_csv('database/diabetes.csv') 
+                file_path = BASE_DIR / "database" / "diabetes.csv"
+                data = pd.read_csv(file_path) 
                 X = data.drop('Outcome', axis=1).values
                 y = data['Outcome'].values
                 
-                # 2. Huấn luyện model
-                model_dt = DecisionTreeManual(max_depth=5, min_samples_split=2)
-                model_knn = KNN(k=5)
-                model_dt.fit(X, y)
-                model_knn.fit(X, y)
-
-                # 3. Lấy dữ liệu sạch từ form
+                # 2. Lấy dữ liệu sạch từ form
                 clean_form = form.cleaned_data
                 input_data = np.array([[
                     float(clean_form['pregnancies']), float(clean_form['glucose']), 
@@ -96,13 +94,9 @@ def predict(request):
                     float(clean_form['diabetes_pedigree_function']), float(clean_form['age'])
                 ]])
                 
-                # 4. Dự đoán
-                prediction_result = model_dt.predict(input_data)
-                knn_predict = model_knn.predict(input_data)
-                prediction = int(prediction_result[0])
-                result = load_all_model_and_compare( X, y,input_data)
-                print(f"--- Dự đoán kết quả: {prediction} --- | Decision Tree")
-                print(f"--- Dự đoán kết quả: {knn_predict[0]} --- | KNN")
+                # 3. Gọi hàm compare models
+                result = load_all_model_and_compare(X, y, input_data)
+                
                 print("=" * 40)
                 print("MODEL PREDICTION REPORT")
                 print("=" * 40)
@@ -120,15 +114,35 @@ def predict(request):
                 print(f"  Test Ratio          : {result['test_ratio']}")
 
                 print("=" * 40)
+                
+                # 4. Tìm model có accuracy cao nhất
+                best_model = max(result["accuracies"], key=result["accuracies"].get)
+                best_accuracy = result["accuracies"][best_model]
+                best_prediction = result["predictions"][best_model]
+                
+                complement_accuracy = 100 - best_accuracy
+                
+                # 5. Tạo dữ liệu context
+                context['has_prediction'] = True
+                context['prediction'] = best_prediction
+                context['prediction_text'] = 'Positive' if best_prediction == 1 else 'Negative'
+                context['accuracy'] = best_accuracy
+                context['complement_accuracy'] = complement_accuracy
+                context['best_model'] = best_model.replace('_', ' ').title()
+                context['all_results'] = result
+                
+                print(f"\n✓ Best Model: {best_model} | Accuracy: {best_accuracy}% | Prediction: {best_prediction}")
 
             except Exception as e:
                 print(f"--- LỖI HỆ THỐNG: {e} ---")
-                # Nếu có lỗi trong quá trình tính toán, in ra terminal thay vì trả về 500
+                context['has_prediction'] = False
+                context['error'] = str(e)
         else:
             print("--- Lỗi Form ---")
             print(form.errors)
+            context['has_prediction'] = False
 
-    return render(request, 'diabetes/predict.html')
+    return render(request, 'diabetes/predict.html', context)
 
 def evaluation(request):
     file_path = BASE_DIR / "database" / "diabetes.csv"
