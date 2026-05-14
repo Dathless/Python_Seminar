@@ -1,478 +1,623 @@
-<!DOCTYPE html>
+<!doctype html>
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Diabetes Predictor ML - Dataset Overview</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "on-tertiary-fixed-variant": "#733600",
-                        "on-tertiary-container": "#fffbff",
-                        "secondary-fixed-dim": "#c5c6ca",
-                        "primary-fixed-dim": "#abc7ff",
-                        "surface-container-low": "#f2f3fc",
-                        "on-tertiary-fixed": "#311300",
-                        "inverse-primary": "#abc7ff",
-                        "on-primary-fixed-variant": "#00458f",
-                        "text-muted": "#95AAC9",
-                        "on-secondary": "#ffffff",
-                        "tertiary-fixed": "#ffdcc7",
-                        "secondary-fixed": "#e1e2e6",
-                        "surface-bright": "#f9f9ff",
-                        "on-secondary-fixed-variant": "#44474a",
-                        "on-background": "#191c22",
-                        "predict-action": "#28A745",
-                        "tertiary-container": "#b85a00",
-                        "surface-container": "#ecedf7",
-                        "secondary-container": "#dedfe3",
-                        "surface-variant": "#e1e2eb",
-                        "border-color": "#E3EBF6",
-                        "surface-tint": "#005cba",
-                        "surface": "#f9f9ff",
-                        "background-main": "#F8F9FA",
-                        "danger": "#E5533D",
-                        "primary": "#005ab6",
-                        "tertiary": "#934700",
-                        "outline": "#727784",
-                        "on-primary-container": "#fefcff",
-                        "on-primary": "#ffffff",
-                        "surface-container-highest": "#e1e2eb",
-                        "surface-dim": "#d8d9e3",
-                        "inverse-on-surface": "#eff0fa",
-                        "error": "#ba1a1a",
-                        "on-secondary-fixed": "#191c1f",
-                        "background": "#f9f9ff",
-                        "inverse-surface": "#2d3037",
-                        "on-primary-fixed": "#001b3f",
-                        "tertiary-fixed-dim": "#ffb787",
-                        "on-secondary-container": "#606366",
-                        "error-container": "#ffdad6",
-                        "success": "#2EB85C",
-                        "secondary": "#5c5e62",
-                        "outline-variant": "#c1c6d5",
-                        "surface-container-high": "#e6e8f1",
-                        "on-error-container": "#93000a",
-                        "primary-fixed": "#d7e3ff",
-                        "on-error": "#ffffff",
-                        "on-tertiary": "#ffffff",
-                        "on-surface": "#191c22",
-                        "surface-container-lowest": "#ffffff",
-                        "primary-container": "#1d73dc",
-                        "text-primary": "#12263F",
-                        "on-surface-variant": "#414753"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "container-padding": "24px",
-                        "card-padding": "16px",
-                        "sidebar-width": "220px",
-                        "header-height": "60px",
-                        "gutter": "16px",
-                        "input-padding": "8px"
-                    },
-                    "fontFamily": {
-                        "body-md": ["Manrope"],
-                        "display": ["Manrope"],
-                        "body-sm": ["Manrope"],
-                        "title-lg": ["Manrope"],
-                        "label-bold": ["Manrope"],
-                        "caption": ["Manrope"]
-                    },
-                    "fontSize": {
-                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                        "display": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
-                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
-                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
-                        "label-bold": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
-                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
-                    }
-                }
-            }
-        }
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Diabetes Predictor ML - Dataset Overview</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-fixed-variant": "#733600",
+              "on-tertiary-container": "#fffbff",
+              "secondary-fixed-dim": "#c5c6ca",
+              "primary-fixed-dim": "#abc7ff",
+              "surface-container-low": "#f2f3fc",
+              "on-tertiary-fixed": "#311300",
+              "inverse-primary": "#abc7ff",
+              "on-primary-fixed-variant": "#00458f",
+              "text-muted": "#95AAC9",
+              "on-secondary": "#ffffff",
+              "tertiary-fixed": "#ffdcc7",
+              "secondary-fixed": "#e1e2e6",
+              "surface-bright": "#f9f9ff",
+              "on-secondary-fixed-variant": "#44474a",
+              "on-background": "#191c22",
+              "predict-action": "#28A745",
+              "tertiary-container": "#b85a00",
+              "surface-container": "#ecedf7",
+              "secondary-container": "#dedfe3",
+              "surface-variant": "#e1e2eb",
+              "border-color": "#E3EBF6",
+              "surface-tint": "#005cba",
+              surface: "#f9f9ff",
+              "background-main": "#F8F9FA",
+              danger: "#E5533D",
+              primary: "#005ab6",
+              tertiary: "#934700",
+              outline: "#727784",
+              "on-primary-container": "#fefcff",
+              "on-primary": "#ffffff",
+              "surface-container-highest": "#e1e2eb",
+              "surface-dim": "#d8d9e3",
+              "inverse-on-surface": "#eff0fa",
+              error: "#ba1a1a",
+              "on-secondary-fixed": "#191c1f",
+              background: "#f9f9ff",
+              "inverse-surface": "#2d3037",
+              "on-primary-fixed": "#001b3f",
+              "tertiary-fixed-dim": "#ffb787",
+              "on-secondary-container": "#606366",
+              "error-container": "#ffdad6",
+              success: "#2EB85C",
+              secondary: "#5c5e62",
+              "outline-variant": "#c1c6d5",
+              "surface-container-high": "#e6e8f1",
+              "on-error-container": "#93000a",
+              "primary-fixed": "#d7e3ff",
+              "on-error": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "on-surface": "#191c22",
+              "surface-container-lowest": "#ffffff",
+              "primary-container": "#1d73dc",
+              "text-primary": "#12263F",
+              "on-surface-variant": "#414753",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "container-padding": "24px",
+              "card-padding": "16px",
+              "sidebar-width": "220px",
+              "header-height": "60px",
+              gutter: "16px",
+              "input-padding": "8px",
+            },
+            fontFamily: {
+              "body-md": ["Manrope"],
+              display: ["Manrope"],
+              "body-sm": ["Manrope"],
+              "title-lg": ["Manrope"],
+              "label-bold": ["Manrope"],
+              caption: ["Manrope"],
+            },
+            fontSize: {
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              display: ["24px", { lineHeight: "32px", fontWeight: "700" }],
+              "body-sm": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+              "title-lg": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+              "label-bold": ["14px", { lineHeight: "20px", fontWeight: "600" }],
+              caption: ["12px", { lineHeight: "16px", fontWeight: "500" }],
+            },
+          },
+        },
+      };
     </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        body {
-            font-family: 'Manrope', sans-serif;
-            background-color: #F8F9FA;
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 10px;
-        }
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      body {
+        font-family: "Manrope", sans-serif;
+        background-color: #f8f9fa;
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 10px;
+      }
     </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
   </head>
-<body class="bg-background-main text-on-surface">
-<!-- TopAppBar -->
-<header class="fixed top-0 w-full h-[60px] border-b border-slate-200 bg-white z-50 flex justify-between items-center px-6 shadow-sm shadow-slate-200/50">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-blue-600 text-2xl" data-icon="monitor_heart">monitor_heart</span>
-<span class="text-xl font-bold text-blue-600 tracking-tighter">Diabetes Predictor ML</span>
-</div>
-<div class="flex items-center gap-4">
-<div class="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center border border-blue-200 overflow-hidden">
-<img alt="Medical Professional Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a medical doctor in a clinical setting, wearing a white lab coat and a stethoscope around their neck. The lighting is bright and clean, reflecting a high-end medical laboratory environment. The background is a soft-focus medical office with blue and white tones, matching the corporate modern aesthetic of the UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv_RSB7x5HAOyoc52592OR25_BmR4fnWtdRqdQScKFhbYHw7rrMAriUZfBMrDQjyS0Qy2QfwbYc35FjdCItWftAryfP5xRHqr8xtQSqUW38o5JIOBnTcDTcivevRLoMnzqLhl-YpYmigvt_7qc3t9SbDE6Z5dQSFvRvsyyBfKQRMkKJKpC-qQxjwNfbZtTknD88sS_5XVKL-Pm0b3RFEe3EFakWN_L-l2Qhay-fsmPPEJ5jQh48OEDubnuHgZo_4qShAk4tW9GFTA"/>
-</div>
-</div>
-</header>
-<!-- NavigationDrawer -->
-<aside class="fixed left-0 top-[60px] w-[220px] h-[calc(100vh-60px)] border-r border-slate-200 bg-slate-50 flex flex-col gap-y-2 p-4 z-40">
-<div class="px-3 py-2 mb-2">
-<span class="text-[10px] font-bold tracking-widest text-slate-400 uppercase">ML PIPELINE</span>
-</div>
-<nav class="flex flex-col gap-1">
-<!-- Dataset Overview (Active) -->
-<a class="flex items-center gap-3 px-3 py-2.5 transition-all duration-200 transform active:scale-95 bg-blue-50 text-blue-700 font-bold rounded-lg font-body-sm text-body-sm" href="{% url 'overview' %}">
-<span class="material-symbols-outlined text-[20px]" data-icon="database">database</span>
-<span>Dataset Overview</span>
-</a>
-<!-- Predict -->
-<a class="flex items-center gap-3 px-3 py-2.5 transition-all duration-200 transform active:scale-95 text-slate-600 hover:text-blue-600 hover:bg-blue-50/50 rounded-lg font-body-sm text-body-sm" href="{% url 'predict' %}">
-<span class="material-symbols-outlined text-[20px]" data-icon="online_prediction">online_prediction</span>
-<span>Predict</span>
-</a>
-<!-- Model Training -->
-<a class="flex items-center gap-3 px-3 py-2.5 transition-all duration-200 transform active:scale-95 text-slate-600 hover:text-blue-600 hover:bg-blue-50/50 rounded-lg font-body-sm text-body-sm" href="{% url 'model_training' %}">
-<span class="material-symbols-outlined text-[20px]" data-icon="model_training">model_training</span>
-<span>Model Training</span>
-</a>
-<!-- Evaluation -->
-<a class="flex items-center gap-3 px-3 py-2.5 transition-all duration-200 transform active:scale-95 text-slate-600 hover:text-blue-600 hover:bg-blue-50/50 rounded-lg font-body-sm text-body-sm" href="{% url 'evaluation' %}">
-<span class="material-symbols-outlined text-[20px]" data-icon="analytics">analytics</span>
-<span>Evaluation</span>
-</a>
-</nav>
-</aside>
-<!-- Main Content Stage -->
-<main class="ml-[220px] mt-[60px] p-8 min-h-[calc(100vh-60px)]">
-<div class="max-w-7xl mx-auto space-y-6">
-<!-- Header Section -->
-<div class="flex justify-between items-end">
-<div>
-<h1 class="font-display text-display text-text-primary mb-1">Dataset Overview</h1>
-<p class="font-body-sm text-body-sm text-text-muted">Analyzing Pima Indians Diabetes Database (768 records found)</p>
-</div>
-<div class="flex gap-3">
-<button class="px-4 py-2 bg-white border border-border-color rounded-lg text-body-sm font-label-bold text-slate-700 flex items-center gap-2 hover:bg-slate-50 transition-colors">
-<span class="material-symbols-outlined text-[18px]" data-icon="download">download</span>
-                        Export CSV
-                    </button>
-<button class="px-4 py-2 bg-primary text-white rounded-lg text-body-sm font-label-bold flex items-center gap-2 hover:brightness-90 transition-all">
-<span class="material-symbols-outlined text-[18px]" data-icon="refresh">refresh</span>
-                        Reload Data
-                    </button>
-</div>
-</div>
-<!-- Bento Grid Layout for Dataset Insight -->
-<div class="grid grid-cols-12 gap-6">
-<!-- Main Data Table Card -->
-<div class="col-span-12 bg-white rounded-[10px] border border-border-color shadow-sm overflow-hidden flex flex-col min-h-[400px]">
-<div class="px-6 py-4 border-b border-border-color flex justify-between items-center bg-slate-50/50">
-<div class="flex items-center gap-4">
-<span class="font-label-bold text-label-bold text-text-primary">Preview: First 10 Rows</span>
-<span class="px-2 py-0.5 bg-blue-100 text-blue-700 text-[11px] font-bold rounded uppercase tracking-wider">Normalized Data</span>
-</div>
-<div class="flex items-center gap-2">
-<span class="text-[12px] text-text-muted">Showing 10 of 768 entries</span>
-</div>
-</div>
-<div class="flex-1 overflow-auto custom-scrollbar">
-<table class="w-full text-left border-collapse min-w-[1000px]">
-<thead class="sticky top-0 bg-white z-10">
-<tr>
-<th class="px-6 py-3 border-b border-border-color font-label-bold text-caption text-text-muted uppercase tracking-wider">ID</th>
-<th class="px-6 py-3 border-b border-border-color font-label-bold text-caption text-text-muted uppercase tracking-wider">Pregnancies</th>
-<th class="px-6 py-3 border-b border-border-color font-label-bold text-caption text-text-muted uppercase tracking-wider">Glucose</th>
-<th class="px-6 py-3 border-b border-border-color font-label-bold text-caption text-text-muted uppercase tracking-wider">Blood Pressure</th>
-<th class="px-6 py-3 border-b border-border-color font-label-bold text-caption text-text-muted uppercase tracking-wider">Skin Thickness</th>
-<th class="px-6 py-3 border-b border-border-color font-label-bold text-caption text-text-muted uppercase tracking-wider">Insulin</th>
-<th class="px-6 py-3 border-b border-border-color font-label-bold text-caption text-text-muted uppercase tracking-wider">BMI</th>
-<th class="px-6 py-3 border-b border-border-color font-label-bold text-caption text-text-muted uppercase tracking-wider">Pedigree</th>
-<th class="px-6 py-3 border-b border-border-color font-label-bold text-caption text-text-muted uppercase tracking-wider">Age</th>
-<th class="px-6 py-3 border-b border-border-color font-label-bold text-caption text-text-muted uppercase tracking-wider">Outcome</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-border-color">
-<tr class="hover:bg-blue-50/30 transition-colors">
-<td class="px-6 py-4 font-body-sm text-body-sm text-text-muted">#001</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">6</td>
-<td class="px-6 py-4 font-body-sm text-body-sm font-semibold">148</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">72</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">35</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">0</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">33.6</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">0.627</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">50</td>
-<td class="px-6 py-4"><span class="px-2.5 py-1 bg-red-100 text-red-700 text-[11px] font-bold rounded-full">POSITIVE</span></td>
-</tr>
-<tr class="hover:bg-blue-50/30 transition-colors">
-<td class="px-6 py-4 font-body-sm text-body-sm text-text-muted">#002</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">1</td>
-<td class="px-6 py-4 font-body-sm text-body-sm font-semibold text-primary">85</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">66</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">29</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">0</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">26.6</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">0.351</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">31</td>
-<td class="px-6 py-4"><span class="px-2.5 py-1 bg-success/10 text-success text-[11px] font-bold rounded-full">NEGATIVE</span></td>
-</tr>
-<tr class="hover:bg-blue-50/30 transition-colors">
-<td class="px-6 py-4 font-body-sm text-body-sm text-text-muted">#003</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">8</td>
-<td class="px-6 py-4 font-body-sm text-body-sm font-semibold">183</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">64</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">0</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">0</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">23.3</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">0.672</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">32</td>
-<td class="px-6 py-4"><span class="px-2.5 py-1 bg-red-100 text-red-700 text-[11px] font-bold rounded-full">POSITIVE</span></td>
-</tr>
-<tr class="hover:bg-blue-50/30 transition-colors">
-<td class="px-6 py-4 font-body-sm text-body-sm text-text-muted">#004</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">1</td>
-<td class="px-6 py-4 font-body-sm text-body-sm font-semibold text-primary">89</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">66</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">23</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">94</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">28.1</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">0.167</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">21</td>
-<td class="px-6 py-4"><span class="px-2.5 py-1 bg-success/10 text-success text-[11px] font-bold rounded-full">NEGATIVE</span></td>
-</tr>
-<tr class="hover:bg-blue-50/30 transition-colors">
-<td class="px-6 py-4 font-body-sm text-body-sm text-text-muted">#005</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">0</td>
-<td class="px-6 py-4 font-body-sm text-body-sm font-semibold">137</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">40</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">35</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">168</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">43.1</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">2.288</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">33</td>
-<td class="px-6 py-4"><span class="px-2.5 py-1 bg-red-100 text-red-700 text-[11px] font-bold rounded-full">POSITIVE</span></td>
-</tr>
-<tr class="hover:bg-blue-50/30 transition-colors">
-<td class="px-6 py-4 font-body-sm text-body-sm text-text-muted">#006</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">5</td>
-<td class="px-6 py-4 font-body-sm text-body-sm font-semibold text-primary">116</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">74</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">0</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">0</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">25.6</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">0.201</td>
-<td class="px-6 py-4 font-body-sm text-body-sm">30</td>
-<td class="px-6 py-4"><span class="px-2.5 py-1 bg-success/10 text-success text-[11px] font-bold rounded-full">NEGATIVE</span></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<!-- Statistics Panel -->
-<div class="col-span-12 bg-white rounded-[10px] border border-border-color shadow-sm overflow-hidden p-6">
-<div class="flex items-center gap-2 mb-6">
-<span class="material-symbols-outlined text-blue-600" data-icon="query_stats">query_stats</span>
-<h2 class="font-label-bold text-title-lg text-text-primary">Dataset Statistics</h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-8 gap-4">
-<!-- Stat Item (Glucose example) -->
-<div class="bg-surface-container-low p-4 rounded-lg border border-slate-100">
-<span class="text-caption font-label-bold text-text-muted block mb-2">GLUCOSE</span>
-<div class="space-y-1">
-<div class="flex justify-between">
-<span class="text-[11px] text-slate-500">Mean</span>
-<span class="text-[11px] font-bold">120.89</span>
-</div>
-<div class="flex justify-between">
-<span class="text-[11px] text-slate-500">Std Dev</span>
-<span class="text-[11px] font-bold">31.97</span>
-</div>
-<div class="flex justify-between pt-1 border-t border-slate-200">
-<span class="text-[11px] text-slate-500">Missing</span>
-<span class="text-[11px] font-bold text-red-500">0.6%</span>
-</div>
-</div>
-</div>
-<!-- Stat Item (Pregnancies) -->
-<div class="bg-surface-container-low p-4 rounded-lg border border-slate-100">
-<span class="text-caption font-label-bold text-text-muted block mb-2">PREGNANCIES</span>
-<div class="space-y-1">
-<div class="flex justify-between">
-<span class="text-[11px] text-slate-500">Mean</span>
-<span class="text-[11px] font-bold">3.85</span>
-</div>
-<div class="flex justify-between">
-<span class="text-[11px] text-slate-500">Std Dev</span>
-<span class="text-[11px] font-bold">3.37</span>
-</div>
-<div class="flex justify-between pt-1 border-t border-slate-200">
-<span class="text-[11px] text-slate-500">Missing</span>
-<span class="text-[11px] font-bold text-success">0.0%</span>
-</div>
-</div>
-</div>
-<!-- Stat Item (Blood Pressure) -->
-<div class="bg-surface-container-low p-4 rounded-lg border border-slate-100">
-<span class="text-caption font-label-bold text-text-muted block mb-2">BLOOD PRESSURE</span>
-<div class="space-y-1">
-<div class="flex justify-between">
-<span class="text-[11px] text-slate-500">Mean</span>
-<span class="text-[11px] font-bold">69.11</span>
-</div>
-<div class="flex justify-between">
-<span class="text-[11px] text-slate-500">Std Dev</span>
-<span class="text-[11px] font-bold">19.36</span>
-</div>
-<div class="flex justify-between pt-1 border-t border-slate-200">
-<span class="text-[11px] text-slate-500">Missing</span>
-<span class="text-[11px] font-bold text-red-500">4.5%</span>
-</div>
-</div>
-</div>
-<!-- Stat Item (Skin Thickness) -->
-<div class="bg-surface-container-low p-4 rounded-lg border border-slate-100">
-<span class="text-caption font-label-bold text-text-muted block mb-2">SKIN THICKNESS</span>
-<div class="space-y-1">
-<div class="flex justify-between">
-<span class="text-[11px] text-slate-500">Mean</span>
-<span class="text-[11px] font-bold">20.54</span>
-</div>
-<div class="flex justify-between">
-<span class="text-[11px] text-slate-500">Std Dev</span>
-<span class="text-[11px] font-bold">15.95</span>
-</div>
-<div class="flex justify-between pt-1 border-t border-slate-200">
-<span class="text-[11px] text-slate-500">Missing</span>
-<span class="text-[11px] font-bold text-red-500">29.6%</span>
-</div>
-</div>
-</div>
-<!-- Stat Item (Insulin) -->
-<div class="bg-surface-container-low p-4 rounded-lg border border-slate-100">
-<span class="text-caption font-label-bold text-text-muted block mb-2">INSULIN</span>
-<div class="space-y-1">
-<div class="flex justify-between">
-<span class="text-[11px] text-slate-500">Mean</span>
-<span class="text-[11px] font-bold">79.80</span>
-</div>
-<div class="flex justify-between">
-<span class="text-[11px] text-slate-500">Std Dev</span>
-<span class="text-[11px] font-bold">115.24</span>
-</div>
-<div class="flex justify-between pt-1 border-t border-slate-200">
-<span class="text-[11px] text-slate-500">Missing</span>
-<span class="text-[11px] font-bold text-red-500">48.7%</span>
-</div>
-</div>
-</div>
-<!-- Stat Item (BMI) -->
-<div class="bg-surface-container-low p-4 rounded-lg border border-slate-100">
-<span class="text-caption font-label-bold text-text-muted block mb-2">BMI</span>
-<div class="space-y-1">
-<div class="flex justify-between">
-<span class="text-[11px] text-slate-500">Mean</span>
-<span class="text-[11px] font-bold">31.99</span>
-</div>
-<div class="flex justify-between">
-<span class="text-[11px] text-slate-500">Std Dev</span>
-<span class="text-[11px] font-bold">7.88</span>
-</div>
-<div class="flex justify-between pt-1 border-t border-slate-200">
-<span class="text-[11px] text-slate-500">Missing</span>
-<span class="text-[11px] font-bold text-red-500">1.4%</span>
-</div>
-</div>
-</div>
-<!-- Stat Item (Pedigree) -->
-<div class="bg-surface-container-low p-4 rounded-lg border border-slate-100">
-<span class="text-caption font-label-bold text-text-muted block mb-2">DP FUNCTION</span>
-<div class="space-y-1">
-<div class="flex justify-between">
-<span class="text-[11px] text-slate-500">Mean</span>
-<span class="text-[11px] font-bold">0.47</span>
-</div>
-<div class="flex justify-between">
-<span class="text-[11px] text-slate-500">Std Dev</span>
-<span class="text-[11px] font-bold">0.33</span>
-</div>
-<div class="flex justify-between pt-1 border-t border-slate-200">
-<span class="text-[11px] text-slate-500">Missing</span>
-<span class="text-[11px] font-bold text-success">0.0%</span>
-</div>
-</div>
-</div>
-<!-- Stat Item (Age) -->
-<div class="bg-surface-container-low p-4 rounded-lg border border-slate-100">
-<span class="text-caption font-label-bold text-text-muted block mb-2">AGE</span>
-<div class="space-y-1">
-<div class="flex justify-between">
-<span class="text-[11px] text-slate-500">Mean</span>
-<span class="text-[11px] font-bold">33.24</span>
-</div>
-<div class="flex justify-between">
-<span class="text-[11px] text-slate-500">Std Dev</span>
-<span class="text-[11px] font-bold">11.76</span>
-</div>
-<div class="flex justify-between pt-1 border-t border-slate-200">
-<span class="text-[11px] text-slate-500">Missing</span>
-<span class="text-[11px] font-bold text-success">0.0%</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Secondary Data Insights (Visual Aids) -->
-<div class="col-span-12 lg:col-span-4 bg-white rounded-[10px] border border-border-color shadow-sm p-6 flex flex-col justify-center items-center text-center">
-<span class="material-symbols-outlined text-4xl text-blue-200 mb-4" data-icon="pie_chart">pie_chart</span>
-<h3 class="font-label-bold text-body-md text-text-primary mb-2">Outcome Balance</h3>
-<div class="w-full h-4 bg-slate-100 rounded-full overflow-hidden flex mb-3">
-<div class="h-full bg-red-400" style="width: 34.9%"></div>
-<div class="h-full bg-success/60" style="width: 65.1%"></div>
-</div>
-<div class="flex justify-between w-full text-caption">
-<span class="text-red-600 font-bold">34.9% Positive</span>
-<span class="text-success font-bold">65.1% Negative</span>
-</div>
-</div>
-<div class="col-span-12 lg:col-span-8 bg-blue-600 rounded-[10px] shadow-sm p-6 flex items-center justify-between overflow-hidden relative group">
-<div class="relative z-10 text-white">
-<h3 class="font-display text-title-lg mb-1">Dataset Health Warning</h3>
-<p class="font-body-sm text-body-sm opacity-90 max-w-md">The "Insulin" and "Skin Thickness" features show a high percentage of missing values (replaced with 0). Consider imputation or model robustness during training phase.</p>
-<button class="mt-4 px-4 py-2 bg-white text-blue-600 rounded-lg text-body-sm font-label-bold hover:bg-blue-50 transition-colors">
-                            View Data Cleaning Options
-                        </button>
-</div>
-<span class="material-symbols-outlined text-[160px] absolute -right-8 -bottom-8 opacity-10 text-white" data-icon="health_and_safety">health_and_safety</span>
-</div>
-</div>
-</div>
-</main>
-</body></html>
+  <body class="bg-background-main text-on-surface">
+    <!-- TopAppBar -->
+    <header
+      class="fixed top-0 w-full h-[60px] border-b border-slate-200 bg-white z-50 flex justify-between items-center px-6 shadow-sm shadow-slate-200/50"
+    >
+      <div class="flex items-center gap-3">
+        <span
+          class="material-symbols-outlined text-blue-600 text-2xl"
+          data-icon="monitor_heart"
+          >monitor_heart</span
+        >
+        <span class="text-xl font-bold text-blue-600 tracking-tighter"
+          >Diabetes Predictor ML</span
+        >
+      </div>
+      <div class="flex items-center gap-4">
+        <div
+          class="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center border border-blue-200 overflow-hidden"
+        >
+          <img
+            alt="Medical Professional Profile"
+            class="w-full h-full object-cover"
+            data-alt="A professional headshot of a medical doctor in a clinical setting, wearing a white lab coat and a stethoscope around their neck. The lighting is bright and clean, reflecting a high-end medical laboratory environment. The background is a soft-focus medical office with blue and white tones, matching the corporate modern aesthetic of the UI."
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv_RSB7x5HAOyoc52592OR25_BmR4fnWtdRqdQScKFhbYHw7rrMAriUZfBMrDQjyS0Qy2QfwbYc35FjdCItWftAryfP5xRHqr8xtQSqUW38o5JIOBnTcDTcivevRLoMnzqLhl-YpYmigvt_7qc3t9SbDE6Z5dQSFvRvsyyBfKQRMkKJKpC-qQxjwNfbZtTknD88sS_5XVKL-Pm0b3RFEe3EFakWN_L-l2Qhay-fsmPPEJ5jQh48OEDubnuHgZo_4qShAk4tW9GFTA"
+          />
+        </div>
+      </div>
+    </header>
+    <!-- NavigationDrawer -->
+    <aside
+      class="fixed left-0 top-[60px] w-[220px] h-[calc(100vh-60px)] border-r border-slate-200 bg-slate-50 flex flex-col gap-y-2 p-4 z-40"
+    >
+      <div class="px-3 py-2 mb-2">
+        <span
+          class="text-[10px] font-bold tracking-widest text-slate-400 uppercase"
+          >ML PIPELINE</span
+        >
+      </div>
+      <nav class="flex flex-col gap-1">
+        <!-- Dataset Overview (Active) -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 transition-all duration-200 transform active:scale-95 bg-blue-50 text-blue-700 font-bold rounded-lg font-body-sm text-body-sm"
+          href="{% url 'overview' %}"
+        >
+          <span
+            class="material-symbols-outlined text-[20px]"
+            data-icon="database"
+            >database</span
+          >
+          <span>Dataset Overview</span>
+        </a>
+        <!-- Predict -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 transition-all duration-200 transform active:scale-95 text-slate-600 hover:text-blue-600 hover:bg-blue-50/50 rounded-lg font-body-sm text-body-sm"
+          href="{% url 'predict' %}"
+        >
+          <span
+            class="material-symbols-outlined text-[20px]"
+            data-icon="online_prediction"
+            >online_prediction</span
+          >
+          <span>Predict</span>
+        </a>
+        <!-- Model Training -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 transition-all duration-200 transform active:scale-95 text-slate-600 hover:text-blue-600 hover:bg-blue-50/50 rounded-lg font-body-sm text-body-sm"
+          href="{% url 'model_training' %}"
+        >
+          <span
+            class="material-symbols-outlined text-[20px]"
+            data-icon="model_training"
+            >model_training</span
+          >
+          <span>Model Training</span>
+        </a>
+        <!-- Evaluation -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 transition-all duration-200 transform active:scale-95 text-slate-600 hover:text-blue-600 hover:bg-blue-50/50 rounded-lg font-body-sm text-body-sm"
+          href="{% url 'evaluation' %}"
+        >
+          <span
+            class="material-symbols-outlined text-[20px]"
+            data-icon="analytics"
+            >analytics</span
+          >
+          <span>Evaluation</span>
+        </a>
+      </nav>
+    </aside>
+    <!-- Main Content Stage -->
+    <main class="ml-[220px] mt-[60px] p-8 min-h-[calc(100vh-60px)]">
+      <div class="max-w-7xl mx-auto space-y-6">
+        <!-- Header Section -->
+        <div class="flex justify-between items-end">
+          <div>
+            <h1 class="font-display text-display text-text-primary mb-1">
+              Dataset Overview
+            </h1>
+            <!-- <p class="font-body-sm text-body-sm text-text-muted">Analyzing Pima Indians Diabetes Database (768 records found)</p> -->
+            <p class="font-body-sm text-body-sm text-text-muted">
+              Analyzing Pima Indians Diabetes Database ({{ total_records }}
+              records found)
+            </p>
+          </div>
+          <div class="flex gap-3">
+            <button
+              class="px-4 py-2 bg-white border border-border-color rounded-lg text-body-sm font-label-bold text-slate-700 flex items-center gap-2 hover:bg-slate-50 transition-colors"
+            >
+              <span
+                class="material-symbols-outlined text-[18px]"
+                data-icon="download"
+                >download</span
+              >
+              Export CSV
+            </button>
+            <button
+              class="px-4 py-2 bg-primary text-white rounded-lg text-body-sm font-label-bold flex items-center gap-2 hover:brightness-90 transition-all"
+            >
+              <span
+                class="material-symbols-outlined text-[18px]"
+                data-icon="refresh"
+                >refresh</span
+              >
+              Reload Data
+            </button>
+          </div>
+        </div>
+        <!-- Bento Grid Layout for Dataset Insight -->
+        <div class="grid grid-cols-12 gap-6">
+          <!-- Main Data Table Card -->
+          <div
+            class="col-span-12 bg-white rounded-[10px] border border-border-color shadow-sm overflow-hidden flex flex-col h-[520px]"
+          >
+            <div
+              class="px-6 py-4 border-b border-border-color flex justify-between items-center bg-slate-50/50"
+            >
+              <div class="flex items-center gap-4">
+                <span class="font-label-bold text-label-bold text-text-primary">
+                  {% if view_all %} Preview: All Rows {% else %} Preview: First
+                  10 Rows {% endif %}
+                </span>
+                <span
+                  class="px-2 py-0.5 bg-blue-100 text-blue-700 text-[11px] font-bold rounded uppercase tracking-wider"
+                >
+                  {% if view_mode == "original" %} Original Data {% else %}
+                  Normalized Data {% endif %}
+                </span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-[12px] text-text-muted"
+                  >Showing {{ showing_count }} of {{ total_records }}
+                  entries</span
+                >
+
+                {% if view_mode == "original" %}
+                <a
+                  class="px-3 py-1.5 bg-white border border-border-color rounded-lg text-[12px] font-label-bold text-slate-700 hover:bg-slate-50 transition-colors"
+                  href="{% url 'overview' %}?mode=normalized{% if view_all %}&all=1{% endif %}"
+                >
+                  View Normalized
+                </a>
+                {% else %}
+                <a
+                  class="px-3 py-1.5 bg-white border border-border-color rounded-lg text-[12px] font-label-bold text-slate-700 hover:bg-slate-50 transition-colors"
+                  href="{% url 'overview' %}?mode=original{% if view_all %}&all=1{% endif %}"
+                >
+                  View Original
+                </a>
+                {% endif %} {% if view_all %}
+                <a
+                  class="px-3 py-1.5 bg-white border border-border-color rounded-lg text-[12px] font-label-bold text-slate-700 hover:bg-slate-50 transition-colors"
+                  href="{% url 'overview' %}?mode={{ view_mode }}"
+                >
+                  View Preview
+                </a>
+                {% else %}
+                <a
+                  class="px-3 py-1.5 bg-primary text-white rounded-lg text-[12px] font-label-bold hover:brightness-90 transition-all"
+                  href="{% url 'overview' %}?mode={{ view_mode }}&all=1"
+                >
+                  View All
+                </a>
+                {% endif %}
+              </div>
+            </div>
+            <div class="flex-1 overflow-auto custom-scrollbar">
+              <table class="w-full text-left border-collapse min-w-[1000px]">
+                <thead class="sticky top-0 bg-white z-10">
+                  <tr>
+                    <th
+                      class="px-6 py-3 border-b border-border-color font-label-bold text-caption text-text-muted uppercase tracking-wider"
+                    >
+                      ID
+                    </th>
+                    <th
+                      class="px-6 py-3 border-b border-border-color font-label-bold text-caption text-text-muted uppercase tracking-wider"
+                    >
+                      Pregnancies
+                    </th>
+                    <th
+                      class="px-6 py-3 border-b border-border-color font-label-bold text-caption text-text-muted uppercase tracking-wider"
+                    >
+                      Glucose
+                    </th>
+                    <th
+                      class="px-6 py-3 border-b border-border-color font-label-bold text-caption text-text-muted uppercase tracking-wider"
+                    >
+                      Blood Pressure
+                    </th>
+                    <th
+                      class="px-6 py-3 border-b border-border-color font-label-bold text-caption text-text-muted uppercase tracking-wider"
+                    >
+                      Skin Thickness
+                    </th>
+                    <th
+                      class="px-6 py-3 border-b border-border-color font-label-bold text-caption text-text-muted uppercase tracking-wider"
+                    >
+                      Insulin
+                    </th>
+                    <th
+                      class="px-6 py-3 border-b border-border-color font-label-bold text-caption text-text-muted uppercase tracking-wider"
+                    >
+                      BMI
+                    </th>
+                    <th
+                      class="px-6 py-3 border-b border-border-color font-label-bold text-caption text-text-muted uppercase tracking-wider"
+                    >
+                      Pedigree
+                    </th>
+                    <th
+                      class="px-6 py-3 border-b border-border-color font-label-bold text-caption text-text-muted uppercase tracking-wider"
+                    >
+                      Age
+                    </th>
+                    <th
+                      class="px-6 py-3 border-b border-border-color font-label-bold text-caption text-text-muted uppercase tracking-wider"
+                    >
+                      Outcome
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody class="divide-y divide-border-color">
+                  {% for row in preview_data %}
+                  <tr class="hover:bg-blue-50/30 transition-colors">
+                    <td
+                      class="px-6 py-4 font-body-sm text-body-sm text-text-muted"
+                    >
+                      #{{ forloop.counter }}
+                    </td>
+                    <td class="px-6 py-4 font-body-sm text-body-sm">
+                      {{ row.Pregnancies }}
+                    </td>
+                    <td
+                      class="px-6 py-4 font-body-sm text-body-sm font-semibold"
+                    >
+                      {{ row.Glucose }}
+                    </td>
+                    <td class="px-6 py-4 font-body-sm text-body-sm">
+                      {{ row.BloodPressure }}
+                    </td>
+                    <td class="px-6 py-4 font-body-sm text-body-sm">
+                      {{ row.SkinThickness }}
+                    </td>
+                    <td class="px-6 py-4 font-body-sm text-body-sm">
+                      {{ row.Insulin }}
+                    </td>
+                    <td class="px-6 py-4 font-body-sm text-body-sm">
+                      {{ row.BMI }}
+                    </td>
+                    <td class="px-6 py-4 font-body-sm text-body-sm">
+                      {{ row.DiabetesPedigreeFunction }}
+                    </td>
+                    <td class="px-6 py-4 font-body-sm text-body-sm">
+                      {{ row.Age }}
+                    </td>
+                    <td class="px-6 py-4">
+                      {% if row.Outcome == 1 %}
+                      <span
+                        class="px-2.5 py-1 bg-red-100 text-red-700 text-[11px] font-bold rounded-full"
+                      >
+                        POSITIVE
+                      </span>
+                      {% else %}
+                      <span
+                        class="px-2.5 py-1 bg-success/10 text-success text-[11px] font-bold rounded-full"
+                      >
+                        NEGATIVE
+                      </span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- bảng Statistics -->
+          {% comment %}
+          <div
+            class="col-span-12 bg-white rounded-[10px] border border-border-color shadow-sm overflow-hidden p-6"
+          >
+            <h2 class="text-lg font-bold mb-4">Field Statistics</h2>
+
+            <div class="overflow-auto">
+              <table class="w-full border-collapse">
+                <thead>
+                  <tr class="border-b border-border-color">
+                    <th class="text-left py-3">Field</th>
+                    <th class="text-left py-3">Mean</th>
+                    <th class="text-left py-3">Std</th>
+                    <th class="text-left py-3">Missing %</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {% for item in statistics %}
+
+                  <tr class="border-b border-border-color">
+                    <td class="py-3">{{ item.field }}</td>
+
+                    <td class="py-3">{{ item.mean }}</td>
+
+                    <td class="py-3">{{ item.std }}</td>
+
+                    <td class="py-3">{{ item.missing_percent }}%</td>
+                  </tr>
+
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          {% endcomment %}
+
+          <!-- outcome Balance -->
+          {% comment %}
+          <div
+            class="col-span-12 bg-white rounded-[10px] border border-border-color shadow-sm overflow-hidden p-6"
+          >
+            <h2 class="text-lg font-bold mb-4">Outcome Balance</h2>
+
+            <div class="space-y-2">
+              <p>
+                Positive: {{ outcome_balance.positive }} ({{
+                outcome_balance.positive_percent }}%)
+              </p>
+
+              <p>
+                Negative: {{ outcome_balance.negative }} ({{
+                outcome_balance.negative_percent }}%)
+              </p>
+            </div>
+          </div>
+          {% endcomment %}
+
+          <!-- Statistics Panel -->
+          <div
+            class="col-span-12 bg-white rounded-[10px] border border-border-color shadow-sm overflow-hidden p-6"
+          >
+            <div class="flex items-center gap-2 mb-6">
+              <span
+                class="material-symbols-outlined text-blue-600"
+                data-icon="query_stats"
+                >query_stats</span
+              >
+              <h2 class="font-label-bold text-title-lg text-text-primary">
+                Dataset Statistics
+              </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-8 gap-4">
+              {% for item in statistics %}
+              <div
+                class="bg-surface-container-low p-4 rounded-lg border border-slate-100"
+              >
+                <span
+                  class="text-caption font-label-bold text-text-muted block mb-2 uppercase"
+                  >{{ item.field }}</span
+                >
+                <div class="space-y-1">
+                  <div class="flex justify-between">
+                    <span class="text-[11px] text-slate-500">Mean</span>
+                    <span class="text-[11px] font-bold">{{ item.mean }}</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-[11px] text-slate-500">Std Dev</span>
+                    <span class="text-[11px] font-bold">{{ item.std }}</span>
+                  </div>
+                  <div
+                    class="flex justify-between pt-1 border-t border-slate-200"
+                  >
+                    <span class="text-[11px] text-slate-500">Missing</span>
+                    {% if item.missing_percent > 0 %}
+                    <span class="text-[11px] font-bold text-red-500"
+                      >{{ item.missing_percent }}%</span
+                    >
+                    {% else %}
+                    <span class="text-[11px] font-bold text-success"
+                      >{{ item.missing_percent }}%</span
+                    >
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <!-- Secondary Data Insights (Visual Aids) -->
+          <div
+            class="col-span-12 lg:col-span-4 bg-white rounded-[10px] border border-border-color shadow-sm p-6 flex flex-col justify-center items-center text-center"
+          >
+            <span
+              class="material-symbols-outlined text-4xl text-blue-200 mb-4"
+              data-icon="pie_chart"
+              >pie_chart</span
+            >
+            <h3 class="font-label-bold text-body-md text-text-primary mb-2">
+              Outcome Balance
+            </h3>
+            <div
+              class="w-full h-4 bg-slate-100 rounded-full overflow-hidden flex mb-3"
+            >
+              <div
+                class="h-full bg-red-400"
+                style="width: {{ outcome_balance.positive_percent }}%"
+              ></div>
+              <div
+                class="h-full bg-success/60"
+                style="width: {{ outcome_balance.negative_percent }}%"
+              ></div>
+            </div>
+            <div class="flex justify-between w-full text-caption">
+              <span class="text-red-600 font-bold"
+                >{{ outcome_balance.positive_percent }}% Positive</span
+              >
+              <span class="text-success font-bold"
+                >{{ outcome_balance.negative_percent }}% Negative</span
+              >
+            </div>
+            <div class="flex justify-between w-full text-caption">
+              <span class="text-red-600 font-bold"
+                >{{ outcome_balance.positive }}</span
+              >
+              <span class="text-success font-bold"
+                >{{ outcome_balance.negative }}</span
+              >
+            </div>
+          </div>
+          <div
+            class="col-span-12 lg:col-span-8 bg-blue-600 rounded-[10px] shadow-sm p-6 flex items-center justify-between overflow-hidden relative group"
+          >
+            <div class="relative z-10 text-white">
+              <h3 class="font-display text-title-lg mb-1">
+                Dataset Health Warning
+              </h3>
+              <p class="font-body-sm text-body-sm opacity-90 max-w-md">
+                The "Insulin" and "Skin Thickness" features show a high
+                percentage of missing values (replaced with 0). Consider
+                imputation or model robustness during training phase.
+              </p>
+              <button
+                class="mt-4 px-4 py-2 bg-white text-blue-600 rounded-lg text-body-sm font-label-bold hover:bg-blue-50 transition-colors"
+              >
+                View Data Cleaning Options
+              </button>
+            </div>
+            <span
+              class="material-symbols-outlined text-[160px] absolute -right-8 -bottom-8 opacity-10 text-white"
+              data-icon="health_and_safety"
+              >health_and_safety</span
+            >
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

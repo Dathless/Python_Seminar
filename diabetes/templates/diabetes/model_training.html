@@ -1,302 +1,639 @@
-<!DOCTYPE html>
+<!doctype html>
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
-            "colors": {
-                    "on-tertiary-fixed-variant": "#733600",
-                    "on-tertiary-container": "#fffbff",
-                    "secondary-fixed-dim": "#c5c6ca",
-                    "primary-fixed-dim": "#abc7ff",
-                    "surface-container-low": "#f2f3fc",
-                    "on-tertiary-fixed": "#311300",
-                    "inverse-primary": "#abc7ff",
-                    "on-primary-fixed-variant": "#00458f",
-                    "text-muted": "#95AAC9",
-                    "on-secondary": "#ffffff",
-                    "tertiary-fixed": "#ffdcc7",
-                    "secondary-fixed": "#e1e2e6",
-                    "surface-bright": "#f9f9ff",
-                    "on-secondary-fixed-variant": "#44474a",
-                    "on-background": "#191c22",
-                    "predict-action": "#28A745",
-                    "tertiary-container": "#b85a00",
-                    "surface-container": "#ecedf7",
-                    "secondary-container": "#dedfe3",
-                    "surface-variant": "#e1e2eb",
-                    "border-color": "#E3EBF6",
-                    "surface-tint": "#005cba",
-                    "surface": "#f9f9ff",
-                    "background-main": "#F8F9FA",
-                    "danger": "#E5533D",
-                    "primary": "#005ab6",
-                    "tertiary": "#934700",
-                    "outline": "#727784",
-                    "on-primary-container": "#fefcff",
-                    "on-primary": "#ffffff",
-                    "surface-container-highest": "#e1e2eb",
-                    "surface-dim": "#d8d9e3",
-                    "inverse-on-surface": "#eff0fa",
-                    "error": "#ba1a1a",
-                    "on-secondary-fixed": "#191c1f",
-                    "background": "#f9f9ff",
-                    "inverse-surface": "#2d3037",
-                    "on-primary-fixed": "#001b3f",
-                    "tertiary-fixed-dim": "#ffb787",
-                    "on-secondary-container": "#606366",
-                    "error-container": "#ffdad6",
-                    "success": "#2EB85C",
-                    "secondary": "#5c5e62",
-                    "outline-variant": "#c1c6d5",
-                    "surface-container-high": "#e6e8f1",
-                    "on-error-container": "#93000a",
-                    "primary-fixed": "#d7e3ff",
-                    "on-error": "#ffffff",
-                    "on-tertiary": "#ffffff",
-                    "on-surface": "#191c22",
-                    "surface-container-lowest": "#ffffff",
-                    "primary-container": "#1d73dc",
-                    "text-primary": "#12263F",
-                    "on-surface-variant": "#414753"
+            colors: {
+              "on-tertiary-fixed-variant": "#733600",
+              "on-tertiary-container": "#fffbff",
+              "secondary-fixed-dim": "#c5c6ca",
+              "primary-fixed-dim": "#abc7ff",
+              "surface-container-low": "#f2f3fc",
+              "on-tertiary-fixed": "#311300",
+              "inverse-primary": "#abc7ff",
+              "on-primary-fixed-variant": "#00458f",
+              "text-muted": "#95AAC9",
+              "on-secondary": "#ffffff",
+              "tertiary-fixed": "#ffdcc7",
+              "secondary-fixed": "#e1e2e6",
+              "surface-bright": "#f9f9ff",
+              "on-secondary-fixed-variant": "#44474a",
+              "on-background": "#191c22",
+              "predict-action": "#28A745",
+              "tertiary-container": "#b85a00",
+              "surface-container": "#ecedf7",
+              "secondary-container": "#dedfe3",
+              "surface-variant": "#e1e2eb",
+              "border-color": "#E3EBF6",
+              "surface-tint": "#005cba",
+              surface: "#f9f9ff",
+              "background-main": "#F8F9FA",
+              danger: "#E5533D",
+              primary: "#005ab6",
+              tertiary: "#934700",
+              outline: "#727784",
+              "on-primary-container": "#fefcff",
+              "on-primary": "#ffffff",
+              "surface-container-highest": "#e1e2eb",
+              "surface-dim": "#d8d9e3",
+              "inverse-on-surface": "#eff0fa",
+              error: "#ba1a1a",
+              "on-secondary-fixed": "#191c1f",
+              background: "#f9f9ff",
+              "inverse-surface": "#2d3037",
+              "on-primary-fixed": "#001b3f",
+              "tertiary-fixed-dim": "#ffb787",
+              "on-secondary-container": "#606366",
+              "error-container": "#ffdad6",
+              success: "#2EB85C",
+              secondary: "#5c5e62",
+              "outline-variant": "#c1c6d5",
+              "surface-container-high": "#e6e8f1",
+              "on-error-container": "#93000a",
+              "primary-fixed": "#d7e3ff",
+              "on-error": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "on-surface": "#191c22",
+              "surface-container-lowest": "#ffffff",
+              "primary-container": "#1d73dc",
+              "text-primary": "#12263F",
+              "on-surface-variant": "#414753",
             },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
             },
-            "spacing": {
-                    "container-padding": "24px",
-                    "card-padding": "16px",
-                    "sidebar-width": "220px",
-                    "header-height": "60px",
-                    "gutter": "16px",
-                    "input-padding": "8px"
+            spacing: {
+              "container-padding": "24px",
+              "card-padding": "16px",
+              "sidebar-width": "220px",
+              "header-height": "60px",
+              gutter: "16px",
+              "input-padding": "8px",
             },
-            "fontFamily": {
-                    "body-md": ["Manrope"],
-                    "display": ["Manrope"],
-                    "body-sm": ["Manrope"],
-                    "title-lg": ["Manrope"],
-                    "label-bold": ["Manrope"],
-                    "caption": ["Manrope"]
+            fontFamily: {
+              "body-md": ["Manrope"],
+              display: ["Manrope"],
+              "body-sm": ["Manrope"],
+              "title-lg": ["Manrope"],
+              "label-bold": ["Manrope"],
+              caption: ["Manrope"],
             },
-            "fontSize": {
-                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                    "display": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
-                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
-                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
-                    "label-bold": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
-                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
-            }
+            fontSize: {
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              display: ["24px", { lineHeight: "32px", fontWeight: "700" }],
+              "body-sm": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+              "title-lg": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+              "label-bold": ["14px", { lineHeight: "20px", fontWeight: "600" }],
+              caption: ["12px", { lineHeight: "16px", fontWeight: "500" }],
+            },
           },
         },
-      }
+      };
     </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        body {
-            font-family: 'Manrope', sans-serif;
-            background-color: #F8F9FA;
-        }
-        .chart-container {
-            position: relative;
-            height: 300px;
-            width: 100%;
-        }
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      body {
+        font-family: "Manrope", sans-serif;
+        background-color: #f8f9fa;
+      }
+      .chart-container {
+        position: relative;
+        height: 300px;
+        width: 100%;
+      }
     </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
   </head>
-<body class="text-on-surface">
-<!-- TopAppBar Component -->
-<header class="fixed top-0 w-full h-[60px] border-b bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 shadow-sm shadow-slate-200/50 dark:shadow-none flex justify-between items-center px-6 z-50">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-blue-600 dark:text-blue-400" data-icon="monitor_heart">monitor_heart</span>
-<h1 class="text-xl font-bold text-blue-600 dark:text-blue-400 tracking-tighter">Diabetes Predictor ML</h1>
-</div>
-<div class="flex items-center gap-4">
-<div class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden">
-<img alt="Medical Professional Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a female medical doctor in her 40s wearing a clean white lab coat and a stethoscope around her neck. The lighting is bright and clinical, with a soft-focus background of a modern healthcare facility. The image is crisp, professional, and communicates trust and authority in a medical machine learning context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3y0bmckumvyYPTsV9B4WZ4jqXsP_a3WhjDwNsxrrsjByTEwgmW0gv65GEnSCkLSNfPfW0T0vIm3NN4MAoFNgEovtEQ6TWwaZtDGTNp0AkC9zwVMJUFm-EY2UaB_biOeoB-uubN2THdTAt7RYJWV53ppRg09z1kx4dU4jgtcMfjgjFXwYVf9qPrDGk6i9cegC-FOCdNZ0SgAiywxql9uZ3wwofb0in-xKyNvqt_C0KyC9pYDSj-tWP6lg-RwQnPFK2fKTid_V22s4"/>
-</div>
-</div>
-</header>
-<!-- NavigationDrawer Component -->
-<nav class="fixed left-0 top-[60px] w-[220px] h-[calc(100vh-60px)] border-r bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 flex flex-col gap-y-2 p-4">
-<div class="px-2 py-4">
-<span class="text-slate-400 font-manrope text-xs font-bold tracking-widest uppercase">ML PIPELINE</span>
-</div>
-<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-all duration-200 transform active:scale-95 hover:bg-blue-50/50 dark:hover:bg-slate-800 font-manrope text-sm font-medium tracking-wide" href="{% url 'overview' %}">
-<span class="material-symbols-outlined" data-icon="database">database</span>
-<span>Dataset Overview</span>
-</a>
-<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-all duration-200 transform active:scale-95 hover:bg-blue-50/50 dark:hover:bg-slate-800 font-manrope text-sm font-medium tracking-wide" href="{% url 'predict' %}">
-<span class="material-symbols-outlined" data-icon="online_prediction">online_prediction</span>
-<span>Predict</span>
-</a>
-<a class="flex items-center gap-3 px-3 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 font-bold rounded-lg transition-all duration-200 transform active:scale-95 font-manrope text-sm tracking-wide" href="{% url 'model_training' %}">
-<span class="material-symbols-outlined" data-icon="model_training">model_training</span>
-<span>Model Training</span>
-</a>
-<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-all duration-200 transform active:scale-95 hover:bg-blue-50/50 dark:hover:bg-slate-800 font-manrope text-sm font-medium tracking-wide" href="{% url 'evaluation' %}">
-<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
-<span>Evaluation</span>
-</a>
-</nav>
-<!-- Main Content Area -->
-<main class="ml-[220px] mt-[60px] p-8 min-h-[calc(100vh-60px)]">
-<div class="max-w-6xl mx-auto space-y-6">
-<header class="mb-8">
-<h2 class="font-display text-display text-text-primary">Model Training Pipeline</h2>
-<p class="font-body-md text-body-md text-on-surface-variant">Configure parameters and monitor the training process of the neural network.</p>
-</header>
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-<!-- Training Parameters Card -->
-<div class="lg:col-span-4 space-y-6">
-<section class="bg-white rounded-[10px] p-6 shadow-sm shadow-slate-200/50 border border-border-color">
-<div class="flex items-center gap-2 mb-6">
-<span class="material-symbols-outlined text-primary" data-icon="settings">settings</span>
-<h3 class="font-title-lg text-title-lg text-text-primary">Parameters</h3>
-</div>
-<div class="space-y-5">
-<div>
-<label class="block font-label-bold text-label-bold text-on-surface-variant mb-2">Learning Rate</label>
-<input class="w-full border border-border-color rounded-lg p-[8px] font-body-sm text-body-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none" step="0.001" type="number" value="0.001"/>
-</div>
-<div>
-<label class="block font-label-bold text-label-bold text-on-surface-variant mb-2">Epochs</label>
-<input class="w-full border border-border-color rounded-lg p-[8px] font-body-sm text-body-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none" type="number" value="100"/>
-</div>
-<div>
-<label class="block font-label-bold text-label-bold text-on-surface-variant mb-2">Batch Size</label>
-<select class="w-full border border-border-color rounded-lg p-[8px] font-body-sm text-body-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none">
-<option>16</option>
-<option selected="">32</option>
-<option>64</option>
-<option>128</option>
-</select>
-</div>
-<div>
-<label class="block font-label-bold text-label-bold text-on-surface-variant mb-2">Train / Test Split</label>
-<div class="flex items-center gap-4">
-<input class="flex-grow accent-primary" max="90" min="50" type="range" value="80"/>
-<span class="font-label-bold text-label-bold text-primary">80/20</span>
-</div>
-</div>
-<button class="w-full bg-predict-action hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 mt-4 shadow-md">
-<span class="material-symbols-outlined" data-icon="play_arrow">play_arrow</span>
-                                Start Training
-                            </button>
-</div>
-</section>
-<!-- Status Indicator Card -->
-<section class="bg-white rounded-[10px] p-6 shadow-sm shadow-slate-200/50 border border-border-color">
-<div class="flex justify-between items-center mb-4">
-<h4 class="font-label-bold text-label-bold text-on-surface-variant">System Status</h4>
-<span class="flex h-2 w-2 rounded-full bg-success animate-pulse"></span>
-</div>
-<div class="space-y-3">
-<div class="flex justify-between text-caption font-caption">
-<span class="text-slate-400">GPU Acceleration</span>
-<span class="text-success font-bold">ACTIVE (RTX 3080)</span>
-</div>
-<div class="flex justify-between text-caption font-caption">
-<span class="text-slate-400">Memory Usage</span>
-<span class="text-text-primary font-bold">4.2 / 16.0 GB</span>
-</div>
-</div>
-</section>
-</div>
-<!-- Training Visualization Area -->
-<div class="lg:col-span-8 space-y-6">
-<!-- Progress Section -->
-<section class="bg-white rounded-[10px] p-6 shadow-sm shadow-slate-200/50 border border-border-color">
-<div class="flex justify-between items-end mb-4">
-<div>
-<h3 class="font-title-lg text-title-lg text-text-primary">Training Progress</h3>
-<p class="text-caption font-caption text-on-surface-variant">Epoch 64 of 100</p>
-</div>
-<span class="font-display text-display text-primary">64%</span>
-</div>
-<div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden mb-2">
-<div class="bg-primary h-full rounded-full transition-all duration-500 ease-out" style="width: 64%"></div>
-</div>
-<div class="flex justify-between text-caption font-caption text-slate-400">
-<span>Estimated Time: 04:12</span>
-<span>Elapsed Time: 07:45</span>
-</div>
-</section>
-<!-- Loss Chart Section -->
-<section class="bg-white rounded-[10px] p-6 shadow-sm shadow-slate-200/50 border border-border-color">
-<div class="flex justify-between items-center mb-8">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-danger" data-icon="show_chart">show_chart</span>
-<h3 class="font-title-lg text-title-lg text-text-primary">Training Loss vs Validation Loss</h3>
-</div>
-<div class="flex gap-4">
-<div class="flex items-center gap-2">
-<div class="w-3 h-3 rounded-full bg-primary"></div>
-<span class="text-caption font-caption text-on-surface-variant">Train Loss</span>
-</div>
-<div class="flex items-center gap-2">
-<div class="w-3 h-3 rounded-full bg-tertiary"></div>
-<span class="text-caption font-caption text-on-surface-variant">Val Loss</span>
-</div>
-</div>
-</div>
-<div class="chart-container flex items-end justify-between border-l-2 border-b-2 border-slate-200 pb-2 pl-2">
-<!-- Simulated Chart Grid/Lines -->
-<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
-<!-- Training Loss Curve -->
-<path d="M0,80 Q10,70 20,40 T40,25 T60,15 T80,10 L100,8" fill="none" stroke="#005ab6" stroke-width="2" vector-effect="non-scaling-stroke"></path>
-<!-- Validation Loss Curve -->
-<path d="M0,85 Q15,75 30,50 T50,35 T70,30 T90,28 L100,27" fill="none" stroke="#934700" stroke-dasharray="4" stroke-width="2" vector-effect="non-scaling-stroke"></path>
-<!-- Horizontal Grid Lines -->
-<line stroke="#E3EBF6" stroke-width="1" vector-effect="non-scaling-stroke" x1="0" x2="100" y1="20" y2="20"></line>
-<line stroke="#E3EBF6" stroke-width="1" vector-effect="non-scaling-stroke" x1="0" x2="100" y1="40" y2="40"></line>
-<line stroke="#E3EBF6" stroke-width="1" vector-effect="non-scaling-stroke" x1="0" x2="100" y1="60" y2="60"></line>
-<line stroke="#E3EBF6" stroke-width="1" vector-effect="non-scaling-stroke" x1="0" x2="100" y1="80" y2="80"></line>
-</svg>
-</div>
-<div class="flex justify-between mt-4 font-caption text-caption text-slate-400">
-<span>Epoch 0</span>
-<span>Epoch 25</span>
-<span>Epoch 50</span>
-<span>Epoch 75</span>
-<span>Epoch 100</span>
-</div>
-</section>
-<!-- Metric Bento Grid -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<div class="bg-primary-container/10 p-4 rounded-xl border border-primary/20">
-<span class="text-caption font-caption text-primary uppercase font-bold">Current Accuracy</span>
-<p class="text-display font-display text-primary">94.2%</p>
-</div>
-<div class="bg-tertiary/10 p-4 rounded-xl border border-tertiary/20">
-<span class="text-caption font-caption text-tertiary uppercase font-bold">Final Loss</span>
-<p class="text-display font-display text-tertiary">0.084</p>
-</div>
-<div class="bg-slate-100 p-4 rounded-xl border border-slate-200">
-<span class="text-caption font-caption text-slate-500 uppercase font-bold">Validation F1</span>
-<p class="text-display font-display text-slate-700">0.91</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-</body></html>
+  <body class="text-on-surface">
+    <!-- TopAppBar Component -->
+    <header
+      class="fixed top-0 w-full h-[60px] border-b bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 shadow-sm shadow-slate-200/50 dark:shadow-none flex justify-between items-center px-6 z-50"
+    >
+      <div class="flex items-center gap-3">
+        <span
+          class="material-symbols-outlined text-blue-600 dark:text-blue-400"
+          data-icon="monitor_heart"
+          >monitor_heart</span
+        >
+        <h1
+          class="text-xl font-bold text-blue-600 dark:text-blue-400 tracking-tighter"
+        >
+          Diabetes Predictor ML
+        </h1>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden">
+          <img
+            alt="Medical Professional Profile"
+            class="w-full h-full object-cover"
+            data-alt="A professional headshot of a female medical doctor in her 40s wearing a clean white lab coat and a stethoscope around her neck. The lighting is bright and clinical, with a soft-focus background of a modern healthcare facility. The image is crisp, professional, and communicates trust and authority in a medical machine learning context."
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3y0bmckumvyYPTsV9B4WZ4jqXsP_a3WhjDwNsxrrsjByTEwgmW0gv65GEnSCkLSNfPfW0T0vIm3NN4MAoFNgEovtEQ6TWwaZtDGTNp0AkC9zwVMJUFm-EY2UaB_biOeoB-uubN2THdTAt7RYJWV53ppRg09z1kx4dU4jgtcMfjgjFXwYVf9qPrDGk6i9cegC-FOCdNZ0SgAiywxql9uZ3wwofb0in-xKyNvqt_C0KyC9pYDSj-tWP6lg-RwQnPFK2fKTid_V22s4"
+          />
+        </div>
+      </div>
+    </header>
+    <!-- NavigationDrawer Component -->
+    <nav
+      class="fixed left-0 top-[60px] w-[220px] h-[calc(100vh-60px)] border-r bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 flex flex-col gap-y-2 p-4"
+    >
+      <div class="px-2 py-4">
+        <span
+          class="text-slate-400 font-manrope text-xs font-bold tracking-widest uppercase"
+          >ML PIPELINE</span
+        >
+      </div>
+      <a
+        class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-all duration-200 transform active:scale-95 hover:bg-blue-50/50 dark:hover:bg-slate-800 font-manrope text-sm font-medium tracking-wide"
+        href="{% url 'overview' %}"
+      >
+        <span class="material-symbols-outlined" data-icon="database"
+          >database</span
+        >
+        <span>Dataset Overview</span>
+      </a>
+      <a
+        class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-all duration-200 transform active:scale-95 hover:bg-blue-50/50 dark:hover:bg-slate-800 font-manrope text-sm font-medium tracking-wide"
+        href="{% url 'predict' %}"
+      >
+        <span class="material-symbols-outlined" data-icon="online_prediction"
+          >online_prediction</span
+        >
+        <span>Predict</span>
+      </a>
+      <a
+        class="flex items-center gap-3 px-3 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 font-bold rounded-lg transition-all duration-200 transform active:scale-95 font-manrope text-sm tracking-wide"
+        href="{% url 'model_training' %}"
+      >
+        <span class="material-symbols-outlined" data-icon="model_training"
+          >model_training</span
+        >
+        <span>Model Training</span>
+      </a>
+      <a
+        class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-all duration-200 transform active:scale-95 hover:bg-blue-50/50 dark:hover:bg-slate-800 font-manrope text-sm font-medium tracking-wide"
+        href="{% url 'evaluation' %}"
+      >
+        <span class="material-symbols-outlined" data-icon="analytics"
+          >analytics</span
+        >
+        <span>Evaluation</span>
+      </a>
+    </nav>
+    <!-- Main Content Area -->
+    <main class="ml-[220px] mt-[60px] p-8 min-h-[calc(100vh-60px)]">
+      <div class="max-w-6xl mx-auto space-y-6">
+        <header class="mb-8">
+          <h2 class="font-display text-display text-text-primary">
+            Model Training Pipeline
+          </h2>
+          <p class="font-body-md text-body-md text-on-surface-variant">
+            Configure parameters and monitor the training process of the neural
+            network.
+          </p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- Training Parameters Card -->
+          <div class="lg:col-span-4 space-y-6">
+            <section
+              class="bg-white rounded-[10px] p-6 shadow-sm shadow-slate-200/50 border border-border-color"
+            >
+              <div class="flex items-center gap-2 mb-6">
+                <span
+                  class="material-symbols-outlined text-primary"
+                  data-icon="settings"
+                  >settings</span
+                >
+                <h3 class="font-title-lg text-title-lg text-text-primary">
+                  Parameters
+                </h3>
+              </div>
+              <form class="space-y-5" method="post">
+                {% csrf_token %}
+                <div>
+                  <label
+                    class="block font-label-bold text-label-bold text-on-surface-variant mb-2"
+                    >Learning Rate</label
+                  >
+                  <input
+                    class="w-full border border-border-color rounded-lg p-[8px] font-body-sm text-body-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none"
+                    step="0.001"
+                    type="number"
+                    name="learning_rate"
+                    value="{{ learning_rate }}"
+                  />
+                </div>
+                <div>
+                  <label
+                    class="block font-label-bold text-label-bold text-on-surface-variant mb-2"
+                    >Epochs</label
+                  >
+                  <input
+                    class="w-full border border-border-color rounded-lg p-[8px] font-body-sm text-body-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none"
+                    type="number"
+                    name="epochs"
+                    value="{{ epochs }}"
+                  />
+                </div>
+                <div>
+                  <label
+                    class="block font-label-bold text-label-bold text-on-surface-variant mb-2"
+                    >Batch Size</label
+                  >
+                  <select
+                    class="w-full border border-border-color rounded-lg p-[8px] font-body-sm text-body-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none"
+                    name="batch_size"
+                  >
+                    <option
+                      value="16"
+                      {%
+                      if
+                      batch_size=""
+                      ="16"
+                      %}selected{%
+                      endif
+                      %}
+                    >
+                      16
+                    </option>
+                    <option
+                      value="32"
+                      {%
+                      if
+                      batch_size=""
+                      ="32"
+                      %}selected{%
+                      endif
+                      %}
+                    >
+                      32
+                    </option>
+                    <option
+                      value="64"
+                      {%
+                      if
+                      batch_size=""
+                      ="64"
+                      %}selected{%
+                      endif
+                      %}
+                    >
+                      64
+                    </option>
+                    <option
+                      value="128"
+                      {%
+                      if
+                      batch_size=""
+                      ="128"
+                      %}selected{%
+                      endif
+                      %}
+                    >
+                      128
+                    </option>
+                  </select>
+                </div>
+                <div>
+                  <label
+                    class="block font-label-bold text-label-bold text-on-surface-variant mb-2"
+                    >Train / Test Split</label
+                  >
+                  <div class="flex items-center gap-4">
+                    <input
+                      class="flex-grow accent-primary"
+                      max="90"
+                      min="50"
+                      type="range"
+                      name="train_ratio"
+                      value="{{ train_ratio }}"
+                      oninput="
+                        document.getElementById('splitLabel').textContent =
+                          this.value + '/' + (100 - parseInt(this.value, 10))
+                      "
+                    />
+                    <span
+                      class="font-label-bold text-label-bold text-primary"
+                      id="splitLabel"
+                      >{{ train_ratio }}/{{ test_ratio }}</span
+                    >
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  class="w-full bg-predict-action hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 mt-4 shadow-md"
+                >
+                  <span class="material-symbols-outlined" data-icon="play_arrow"
+                    >play_arrow</span
+                  >
+                  Start Training
+                </button>
+              </form>
+            </section>
+            <!-- Status Indicator Card -->
+            <section
+              class="bg-white rounded-[10px] p-6 shadow-sm shadow-slate-200/50 border border-border-color"
+            >
+              <div class="flex justify-between items-center mb-4">
+                <h4
+                  class="font-label-bold text-label-bold text-on-surface-variant"
+                >
+                  System Status
+                </h4>
+                <span
+                  class="flex h-2 w-2 rounded-full bg-success animate-pulse"
+                ></span>
+              </div>
+              <div class="space-y-4">
+                <div class="flex justify-between items-center">
+                  <span class="text-slate-500">CPU Usage</span>
+                  <span class="font-bold text-blue-600">{{ cpu_usage }}%</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-slate-500">Memory Usage</span>
+                  <span class="font-bold text-blue-600"
+                    >{{ memory_usage }}</span
+                  >
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-slate-500 font-body-sm"
+                    >GPU Acceleration</span
+                  >
+                  <span
+                    class="font-bold {% if gpu_status_code == 'ACTIVE' %} text-green-500 {% elif gpu_status_code == 'INACTIVE' %} text-red-500 {% else %} text-slate-400 {% endif %}"
+                  >
+                    {{ gpu_acceleration }}
+                  </span>
+                </div>
+              </div>
+            </section>
+          </div>
+          <!-- Training Visualization Area -->
+          <div class="lg:col-span-8 space-y-6">
+            <!-- Progress Section -->
+            <section
+              class="bg-white rounded-[10px] p-6 shadow-sm shadow-slate-200/50 border border-border-color"
+            >
+              <div class="flex justify-between items-end mb-4">
+                <div>
+                  <h3 class="font-title-lg text-title-lg text-text-primary">
+                    Training Progress
+                  </h3>
+                  <p class="text-caption font-caption text-on-surface-variant">
+                    {% if trained %} Epoch {{ epochs }} of {{ epochs }} {% else
+                    %} Epoch 0 of {{ epochs }} {% endif %}
+                  </p>
+                </div>
+                <span class="font-display text-display text-primary">
+                  {% if trained %}100%{% else %}0%{% endif %}
+                </span>
+              </div>
+              <div
+                class="w-full bg-slate-100 h-3 rounded-full overflow-hidden mb-2"
+              >
+                <div
+                  class="bg-primary h-full rounded-full transition-all duration-500 ease-out"
+                  style="width: {% if trained %}100{% else %}0{% endif %}%"
+                ></div>
+              </div>
+              <div
+                class="flex justify-between text-caption font-caption text-slate-400"
+              >
+                <span>Estimated Time: 04:12</span>
+                <span>Elapsed Time: 07:45</span>
+              </div>
+            </section>
+            <!-- Loss Chart Section -->
+            <section
+              class="bg-white rounded-[10px] p-6 shadow-sm shadow-slate-200/50 border border-border-color"
+            >
+              <div class="flex justify-between items-center mb-8">
+                <div class="flex items-center gap-2">
+                  <span
+                    class="material-symbols-outlined text-danger"
+                    data-icon="show_chart"
+                    >show_chart</span
+                  >
+                  <h3 class="font-title-lg text-title-lg text-text-primary">
+                    Training Loss vs Validation Loss
+                  </h3>
+                </div>
+                <div class="flex gap-4">
+                  <div class="flex items-center gap-2">
+                    <div class="w-3 h-3 rounded-full bg-primary"></div>
+                    <span
+                      class="text-caption font-caption text-on-surface-variant"
+                      >Train Loss</span
+                    >
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <div class="w-3 h-3 rounded-full bg-tertiary"></div>
+                    <span
+                      class="text-caption font-caption text-on-surface-variant"
+                      >Val Loss</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                class="chart-container flex items-end justify-between border-l-2 border-b-2 border-slate-200 pb-2 pl-2"
+              >
+                {% if history %} {{ history|json_script:"training-history" }} 
+                {% endif %}
+
+                <svg
+                  class="w-full h-full"
+                  preserveaspectratio="none"
+                  viewbox="0 0 100 100"
+                >
+                  <!-- Training Loss Curve -->
+                  <path
+                    id="trainLossPath"
+                    d="M0,80 Q10,70 20,40 T40,25 T60,15 T80,10 L100,8"
+                    fill="none"
+                    stroke="#005ab6"
+                    stroke-width="2"
+                    vector-effect="non-scaling-stroke"
+                  ></path>
+                  <!-- Validation Loss Curve -->
+                  <path
+                    id="valLossPath"
+                    d="M0,85 Q15,75 30,50 T50,35 T70,30 T90,28 L100,27"
+                    fill="none"
+                    stroke="#934700"
+                    stroke-dasharray="4"
+                    stroke-width="2"
+                    vector-effect="non-scaling-stroke"
+                  ></path>
+                  <!-- Horizontal Grid Lines -->
+                  <line
+                    stroke="#E3EBF6"
+                    stroke-width="1"
+                    vector-effect="non-scaling-stroke"
+                    x1="0"
+                    x2="100"
+                    y1="20"
+                    y2="20"
+                  ></line>
+                  <line
+                    stroke="#E3EBF6"
+                    stroke-width="1"
+                    vector-effect="non-scaling-stroke"
+                    x1="0"
+                    x2="100"
+                    y1="40"
+                    y2="40"
+                  ></line>
+                  <line
+                    stroke="#E3EBF6"
+                    stroke-width="1"
+                    vector-effect="non-scaling-stroke"
+                    x1="0"
+                    x2="100"
+                    y1="60"
+                    y2="60"
+                  ></line>
+                  <line
+                    stroke="#E3EBF6"
+                    stroke-width="1"
+                    vector-effect="non-scaling-stroke"
+                    x1="0"
+                    x2="100"
+                    y1="80"
+                    y2="80"
+                  ></line>
+                </svg>
+              </div>
+              <div
+                class="flex justify-between mt-4 font-caption text-caption text-slate-400"
+              >
+                <span>Epoch 1</span>
+                <span class="opacity-80">...</span>
+                <span id="epochMaxLabel">Epoch {{ epochs }}</span>
+              </div>
+            </section>
+
+            <script>
+              (function () {
+                var el = document.getElementById("training-history");
+                if (!el) return;
+
+                var history;
+                try {
+                  history = JSON.parse(el.textContent || "{}");
+                } catch (e) {
+                  return;
+                }
+
+                var train = (history && history.train_loss) || [];
+                var val = (history && history.val_loss) || [];
+                if (!train.length || !val.length) return;
+
+                var all = train.concat(val);
+                var minY = Math.min.apply(null, all);
+                var maxY = Math.max.apply(null, all);
+                if (minY === maxY) {
+                  maxY = minY + 1;
+                }
+
+                function buildPath(values) {
+                  var n = values.length;
+                  if (!n) return "";
+
+                  var d = "";
+                  for (var i = 0; i < n; i++) {
+                    var x = n === 1 ? 0 : (i / (n - 1)) * 100;
+                    var yNorm = (values[i] - minY) / (maxY - minY);
+                    var y = 100 - yNorm * 100;
+                    d +=
+                      (i === 0 ? "M" : " L") +
+                      x.toFixed(3) +
+                      "," +
+                      y.toFixed(3);
+                  }
+                  return d;
+                }
+
+                var trainPath = document.getElementById("trainLossPath");
+                var valPath = document.getElementById("valLossPath");
+                if (trainPath) trainPath.setAttribute("d", buildPath(train));
+                if (valPath) valPath.setAttribute("d", buildPath(val));
+
+                var epochMaxLabel = document.getElementById("epochMaxLabel");
+                if (epochMaxLabel && history.epoch && history.epoch.length) {
+                  epochMaxLabel.textContent =
+                    "Epoch " + history.epoch[history.epoch.length - 1];
+                }
+              })();
+            </script>
+            <!-- Metric Bento Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div
+                class="bg-primary-container/10 p-4 rounded-xl border border-primary/20"
+              >
+                <span
+                  class="text-caption font-caption text-primary uppercase font-bold"
+                  >Current Accuracy</span
+                >
+                <p class="text-display font-display text-primary">
+                  {{ final_val_acc }}{% if final_val_acc != '--' %}%{% endif %}
+                </p>
+              </div>
+              <div
+                class="bg-tertiary/10 p-4 rounded-xl border border-tertiary/20"
+              >
+                <span
+                  class="text-caption font-caption text-tertiary uppercase font-bold"
+                  >Final Loss</span
+                >
+                <p class="text-display font-display text-tertiary">
+                  {{ final_val_loss }}
+                </p>
+              </div>
+              <div class="bg-slate-100 p-4 rounded-xl border border-slate-200">
+                <span
+                  class="text-caption font-caption text-slate-500 uppercase font-bold"
+                  >Validation F1</span
+                >
+                <p class="text-display font-display text-slate-700">
+                  {{ metrics.f1_score }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
