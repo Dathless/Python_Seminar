@@ -189,20 +189,25 @@ def model_training(request):
         max_mem = round(vm.total / (1024**3), 1)
         memory_usage_str = f"{current_mem}/{max_mem} GB"
         
+        gpu_acceleration = "--"
+        gpu_status_code = "INACTIVE"
+        
         # GPU
         if torch.cuda.is_available():
-            full_gpu_name = torch.cuda.get_device_name(0)
-            match = re.search(r"RTX\s?\d{4}[^\s]*", full_gpu_name)
-            short_name = match.group(0) if match else full_gpu_name
-            
-            if request.method == "POST":
-                gpu_status_code = "ACTIVE"
-                gpu_acceleration = f"ACTIVE ({short_name})"
-            else:
-                gpu_status_code = "INACTIVE"
-                gpu_acceleration = f"INACTIVE ({short_name})"
-        else:
-            gpu_acceleration = "--"
+            try:
+                full_gpu_name = torch.cuda.get_device_name(0)
+                match = re.search(r"RTX\s?\d{4}[^\s]*", full_gpu_name)
+                short_name = match.group(0) if match else full_gpu_name
+                
+                if request.method == "POST":
+                    gpu_status_code = "ACTIVE"
+                    gpu_acceleration = f"ACTIVE ({short_name})"
+                else:
+                    gpu_status_code = "INACTIVE"
+                    gpu_acceleration = f"INACTIVE ({short_name})"
+            except Exception as e:
+                pass
+
 
         # --- 2. LOAD DỮ LIỆU ---
         # Chú ý: Đảm bảo BASE_DIR đã được định nghĩa ở đầu file views.py
